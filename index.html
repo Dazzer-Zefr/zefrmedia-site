@@ -282,20 +282,21 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   .nav-links a.lnk{color:var(--white)}
   .nav-links .pill{margin-top:10px}
   .nav-links .hide{display:flex}
-  .hero h1{font-size:clamp(34px,11vw,52px);line-height:1.04;max-width:100%}
   .hero h1 .pop2{-webkit-text-stroke:1.5px var(--cyan)}
   /* mobile hero rebuild */
-  .hero{min-height:100svh}
-  .hero-video{height:100svh}
-  .hero .hero-grid{align-items:center;padding-top:76px;padding-bottom:8px}
+  .hero h1 br.mbr{display:inline}
+  .hero{min-height:100svh;justify-content:flex-start}
+  .hero .hero-grid{min-height:100svh;align-items:center;padding-top:84px;padding-bottom:28px}
   .hero .hero-grid > div{max-width:100%}
-  .kicker{display:inline-block;white-space:nowrap;font-size:clamp(7px,2.2vw,11px);letter-spacing:.5px;padding:5px 11px;margin-bottom:14px}
-  .hero p.sub{margin-top:14px;font-size:15px;line-height:1.55}
-  .hero .row{margin-top:22px;gap:10px}
+  .hero h1{font-size:clamp(38px,11.5vw,76px);line-height:1.02;max-width:100%;margin:0;white-space:nowrap}
+  .kicker{display:inline-block;white-space:nowrap;font-size:clamp(7px,2.2vw,11px);letter-spacing:.5px;padding:5px 11px;margin-bottom:16px}
+  .hero p.sub{margin-top:18px;font-size:15px;line-height:1.55}
+  .hero .row{margin-top:26px;gap:10px}
   .hero .row .pill{flex:1;text-align:center}
-  .statbar{padding:16px 0 24px}
+  .statbar{padding:34px 0 44px}
 }
 .navclose{display:none}
+br.mbr{display:none}
 @media(max-width:1024px){.navclose{display:block;position:absolute;top:22px;right:22px;font-size:30px;line-height:1;color:#fff;background:none;border:0;cursor:pointer;z-index:10000}}
 </style></head><body>
 <nav id="nav">
@@ -320,7 +321,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="hero-grid">
     <div>
       <span class="kicker">Strategy · Design · Technology · AI · <span class="ig">i</span>Gaming</span>
-      <h1 class="display">We Grow <span class="pop">Bold</span> <span class="ig">i</span>Gaming <span class="pop2">Brands</span></h1>
+      <h1 class="display">We Grow <br class="mbr"><span class="pop">Bold</span> <span class="ig">i</span>Gaming <br class="mbr"><span class="pop2">Brands</span></h1>
       <p class="sub">Zefr Media is the operator-led agency for <span class="ig">i</span>Gaming. Thirty years building real platforms — now turning that experience into the strategy, design and AI that move ambitious gaming brands forward.</p>
       <div class="row">
         <a class="pill" href="contact.html">Start a Project →</a>
