@@ -45,8 +45,9 @@ footer a{color:var(--cyan)}
 .ig{text-transform:lowercase !important}
 
 nav#nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;
-  justify-content:space-between;padding:16px 26px;background:rgba(8,6,15,.6);
+  justify-content:flex-start;gap:40px;padding:16px 26px;background:rgba(8,6,15,.6);
   backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:.3s}
+.nav-links .pill{margin-left:auto}
 nav#nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:rgba(169,159,196,.16)}
 nav#nav .brand{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:1px;text-transform:uppercase;color:var(--white)}
 nav#nav .brand b{color:var(--mag)}
@@ -95,8 +96,8 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
     <a class="lnk" href="technology-ai.html">TECH &amp; AI</a>
     <a class="lnk" href="igaming.html"><span class="ig">i</span>GAMING</a>
     <a class="lnk" href="history.html">HISTORY</a>
-    <a class="lnk norm active" href="norm-game.html">NORM<b>.</b>GAME</a>
     <a class="lnk" href="about.html">ABOUT</a>
+    <a class="lnk norm active" href="norm-game.html">NORM<b>.</b>GAME</a>
     <a class="pill" href="contact.html">Start a Project</a>
   </div>
 </nav>
