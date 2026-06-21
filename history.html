@@ -24,7 +24,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:cent
   justify-content:flex-start;gap:40px;padding:16px 40px;background:rgba(8,6,15,.6);
   backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:.3s}
 nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:var(--line)}
-.brand{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:1px;text-transform:uppercase}
+.brand{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;flex:0 0 auto;order:0}
 .brand b{color:var(--mag)}
 .brand,.fbrand{display:inline-flex;align-items:center;gap:14px}
 .brand-mark{height:56px;width:56px;object-fit:contain}
@@ -43,7 +43,7 @@ nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:var(--line)}
 .pill.ghost{background:transparent;border:2px solid rgba(255,255,255,.25);box-shadow:none}
 .pill.ghost:hover{border-color:var(--cyan);color:var(--cyan)}
 .pill.lg{padding:16px 32px;font-size:15px}
-@media(max-width:860px){.nav-links .hide{display:none}}
+@media(max-width:1024px){.nav-links .hide{display:none}}
 
 /* PAGE HERO (interior pages) */
 .phero{position:relative;min-height:62vh;display:flex;align-items:flex-end;overflow:hidden;
@@ -273,8 +273,8 @@ footer{background:var(--ink);padding:70px 0 36px;border-top:1px solid var(--line
 body.menu-open .navburger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 body.menu-open .navburger span:nth-child(2){opacity:0}
 body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(max-width:860px){
-  .navburger{display:flex}
+@media(max-width:1024px){
+  .navburger{display:flex;margin-left:auto;order:9}
   body.menu-open nav,body.menu-open nav#nav{z-index:9999;backdrop-filter:none}
   .nav-links{position:fixed;top:0;right:0;bottom:0;width:78%;max-width:340px;display:flex !important;margin:0 !important;white-space:normal;flex-direction:column;justify-content:center;align-items:flex-start;gap:26px;padding:0 0 0 40px;background:linear-gradient(160deg,#16121F 0%,#0C0913 60%,#08060F 100%);box-shadow:-20px 0 60px rgba(0,0,0,.6);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:9999;font-size:20px;letter-spacing:1.2px;border-left:1px solid rgba(60,224,224,.18)}
   body.menu-open .nav-links{transform:translateX(0)}
@@ -284,7 +284,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   .nav-links .hide{display:flex}
 }
 .navclose{display:none}
-@media(max-width:860px){.navclose{display:block;position:absolute;top:22px;right:22px;font-size:30px;line-height:1;color:#fff;background:none;border:0;cursor:pointer;z-index:10000}}
+@media(max-width:1024px){.navclose{display:block;position:absolute;top:22px;right:22px;font-size:30px;line-height:1;color:#fff;background:none;border:0;cursor:pointer;z-index:10000}}
 </style></head><body><nav id="nav">
   <a class="brand" href="index.html"><img src="logo-zm.png" alt="Zefr Media" class="brand-mark"><span class="wm"><span class="zefr">ZEFR</span> <span class="media">MEDIA</span></span></a>
   <button class="navburger" id="navburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
