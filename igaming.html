@@ -31,7 +31,7 @@ nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:var(--line)}
 .wm{color:#F6F4FB;line-height:1}
 .wm .zefr{background:linear-gradient(180deg,#80EAEA,#3CE0E0 45%,#1CB0B0);-webkit-background-clip:text;background-clip:text;color:transparent}
 .wm .media{background:linear-gradient(180deg,#FF88C7,#FF2E9E 45%,#D20070);-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav-links{display:flex;gap:34px;align-items:center;margin:0 auto;font-size:13px;font-weight:700;
+.nav-links{display:flex;gap:30px;align-items:center;margin:0 auto;white-space:nowrap;font-size:13px;font-weight:700;
   text-transform:uppercase;letter-spacing:1.2px}
 .nav-links a.lnk{color:var(--muted);transition:.2s}
 .nav-links a.lnk:hover,.nav-links a.lnk.active{color:var(--white)}
@@ -191,20 +191,19 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 @media(max-width:860px){
   .navburger{display:flex}
   body.menu-open nav,body.menu-open nav#nav{z-index:9999;backdrop-filter:none}
-  .nav-links{position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;
-    gap:30px;background:#08060F;
-    transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:9999;
-    font-size:20px;letter-spacing:1.5px}
+  .nav-links{position:fixed;top:0;right:0;bottom:0;width:78%;max-width:340px;display:flex !important;margin:0 !important;white-space:normal;flex-direction:column;justify-content:center;align-items:flex-start;gap:26px;padding:0 0 0 40px;background:linear-gradient(160deg,#16121F 0%,#0C0913 60%,#08060F 100%);box-shadow:-20px 0 60px rgba(0,0,0,.6);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:9999;font-size:20px;letter-spacing:1.2px;border-left:1px solid rgba(60,224,224,.18)}
   body.menu-open .nav-links{transform:translateX(0)}
-  body.menu-open{overflow:hidden}
+  body.menu-open{overflow:hidden} body.menu-open::before{content:'';position:fixed;inset:0;background:rgba(8,6,15,.6);backdrop-filter:blur(3px);z-index:9998}
   .nav-links a.lnk{color:var(--white)}
   .nav-links .pill{margin-top:10px}
   .nav-links .hide{display:flex}
 }
+.navclose{display:none}
+@media(max-width:860px){.navclose{display:block;position:absolute;top:22px;right:22px;font-size:30px;line-height:1;color:#fff;background:none;border:0;cursor:pointer;z-index:10000}}
 </style></head><body><nav id="nav">
   <a class="brand" href="index.html"><img src="logo-zm.png" alt="Zefr Media" class="brand-mark"><span class="wm"><span class="zefr">ZEFR</span> <span class="media">MEDIA</span></span></a>
   <button class="navburger" id="navburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  <div class="nav-links">
+  <div class="nav-links"><button class="navclose" id="navclose" aria-label="Close menu">&times;</button>
     <a class="lnk" href="strategy-consulting.html">STRATEGY</a>
     <a class="lnk" href="design-marketing.html">DESIGN</a>
     <a class="lnk" href="technology-ai.html">TECH &amp; AI</a>
@@ -296,6 +295,7 @@ document.querySelectorAll('.sr').forEach(el=>io.observe(el));
   if(!b) return;
   var body=document.body;
   function close(){body.classList.remove('menu-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open menu');}
+  var x=document.getElementById('navclose'); if(x){x.addEventListener('click',close);}
   b.addEventListener('click',function(){
     var open=body.classList.toggle('menu-open');
     b.setAttribute('aria-expanded',open?'true':'false');
