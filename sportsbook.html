@@ -1,0 +1,800 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sportsbook | Zefr Media</title><meta name="description" content="A proven real-money sportsbook, rebuilt from the ground up on a leading AI infrastructure — not AI bolted on afterwards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08060F;--panel:#0E0A1C;--panel2:#140d26;--mag:#FF2E9E;--vio:#8A2BE2;
+  --cyan:#3CE0E0;--gold:#E8B84B;--white:#F6F4FB;--muted:#A99FC4;
+  --line:rgba(169,159,196,.16);--maxw:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--white);font-family:'Archivo',sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.display{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:1.06}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;
+  justify-content:flex-start;gap:40px;padding:16px 40px;background:rgba(8,6,15,.6);
+  backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:.3s}
+nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:var(--line)}
+.brand{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;flex:0 0 auto;order:0}
+.brand b{color:var(--mag)}
+.brand,.fbrand{display:inline-flex;align-items:center;gap:14px}
+.brand-mark{height:56px;width:56px;object-fit:contain}
+.fbrand .brand-mark{height:48px;width:48px}
+.wm{color:#F6F4FB;line-height:1}
+.wm .zefr{background:linear-gradient(180deg,#80EAEA,#3CE0E0 45%,#1CB0B0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wm .media{background:linear-gradient(180deg,#FF88C7,#FF2E9E 45%,#D20070);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:30px;align-items:center;margin:0 auto;white-space:nowrap;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.2px}
+.nav-links a.lnk{color:var(--muted);transition:.2s}
+.nav-links a.lnk:hover,.nav-links a.lnk.active{color:var(--white)}
+.pill{background:var(--mag);color:#fff;padding:11px 22px;border-radius:40px;font-weight:800;
+  font-size:13px;letter-spacing:1px;transition:.2s;box-shadow:0 6px 20px -6px rgba(255,46,158,.6)}
+.pill:hover{transform:translateY(-2px);box-shadow:0 10px 28px -6px rgba(255,46,158,.8)}
+.pill.dark{background:#fff;color:var(--ink);box-shadow:none}
+.pill.ghost{background:transparent;border:2px solid rgba(255,255,255,.25);box-shadow:none}
+.pill.ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.pill.lg{padding:16px 32px;font-size:15px}
+@media(max-width:1024px){.nav-links .hide{display:none}}
+
+/* PAGE HERO (interior pages) */
+.phero{position:relative;min-height:66vh;display:flex;align-items:center;overflow:hidden;
+  padding:110px 0 70px}
+.phero{clip-path:polygon(0 0,100% 0,100% calc(100% - 70px),0 100%);padding-bottom:90px}
+.phero .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.phero::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(8,6,15,.90),rgba(8,6,15,.55) 55%,rgba(8,6,15,.42)),linear-gradient(transparent 32%,rgba(8,6,15,.95))}
+.phero .wrap{position:relative;z-index:3}
+.phero .kicker{display:inline-block;font-weight:800;font-size:12px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--ink);background:var(--cyan);padding:7px 14px;
+  border-radius:30px;margin-bottom:20px}
+.phero h1{font-size:clamp(48px,8vw,104px);max-width:16ch}
+.phero h1 em{font-style:normal;color:var(--mag)}
+.phero .wrap{max-width:none;margin:0;padding-left:max(26px,calc((100vw - var(--maxw))/2 + 26px));padding-right:26px}
+.phero p.lede{margin-top:20px;max-width:54ch;font-size:clamp(16px,2vw,20px);
+  color:var(--white);font-weight:500}
+
+/* ===== DEPTH & COMPOSITION (GiG/Bragg-style layered scenes) ===== */
+.sbhero{position:relative;overflow:hidden;padding:48px 0 0;
+  background:linear-gradient(180deg,rgba(8,6,15,.82),rgba(8,6,15,.72) 45%,rgba(8,6,15,.92)),
+             radial-gradient(1100px 520px at 80% -8%,rgba(138,43,226,.42),transparent 58%),
+             radial-gradient(820px 420px at 8% 14%,rgba(60,224,224,.20),transparent 55%),
+             url('img/bg-towers.jpg') center 18%/cover no-repeat,var(--ink)}
+.orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.9;z-index:1;pointer-events:none}
+.orb.coin{background:radial-gradient(circle at 35% 30%,#FFE9A8,#E8B84B 55%,#9c7415);box-shadow:0 30px 60px -20px rgba(232,184,75,.55)}
+.orb.o1{width:74px;height:74px;top:18%;right:46%;animation:float1 7s ease-in-out infinite}
+.orb.o2{width:120px;height:120px;bottom:8%;left:-30px;animation:float2 9s ease-in-out infinite}
+.orb.o3{width:46px;height:46px;top:62%;right:8%;background:radial-gradient(circle at 35% 30%,#9BF0F0,#3CE0E0 60%,#168a8a);box-shadow:0 20px 44px -16px rgba(60,224,224,.6);animation:float1 8s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(8deg)}}
+@keyframes float2{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(18px) rotate(-6deg)}}
+
+/* layered device cluster */
+.cluster{position:relative;min-height:440px}
+.cluster .board{position:absolute;right:0;top:0;width:400px;max-width:100%;z-index:3}
+.cluster .phone-float{position:absolute;left:2%;bottom:0;width:212px;z-index:4;
+  filter:drop-shadow(0 50px 90px rgba(138,43,226,.5))}
+@media(max-width:960px){.cluster{min-height:0;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .cluster .board,.cluster .phone-float{position:static;width:300px;max-width:90vw}}
+
+/* ALTERNATING SHOWCASE ROWS */
+.showrow{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:54px 0;position:relative}
+.showrow.flip .vis{order:2}
+@media(max-width:900px){.showrow{grid-template-columns:1fr;gap:30px}.showrow.flip .vis{order:0}}
+.showrow .eyebrow{margin-bottom:12px}
+.showrow h2{font-family:'Anton',sans-serif;font-size:clamp(30px,4.4vw,52px);text-transform:uppercase;line-height:1.08;letter-spacing:.5px}
+.showrow h2 em{font-style:normal;color:var(--mag)}
+.showrow .body{color:var(--muted);font-size:16px;margin-top:16px;max-width:52ch}
+.showrow .feats{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.showrow .feat{display:flex;gap:12px;align-items:flex-start;color:var(--white);font-size:15px}
+.showrow .feat .fi{flex:0 0 auto;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--mag),var(--vio));font-size:13px;font-weight:800;color:#fff}
+.showrow .feat b{color:var(--white);font-weight:700}
+.showrow .feat span{color:var(--muted)}
+
+/* the "visual" panel that anchors each row */
+.vis{position:relative;min-height:300px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(160deg,#140d28,#0b0816);border:1px solid var(--line);
+  box-shadow:0 40px 90px -50px rgba(138,43,226,.6)}
+.vis::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;
+  background:linear-gradient(140deg,rgba(60,224,224,.45),transparent 45%,rgba(255,46,158,.45));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.vis .vpad{position:relative;padding:24px}
+.vis .vlabel{position:absolute;top:14px;left:16px;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);z-index:5}
+
+/* mini trading dashboard visual */
+.dash{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;margin-top:22px}
+.dash .panel{background:#0e0a1c;border:1px solid var(--line);border-radius:12px;padding:12px}
+.dash .panel h5{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:700}
+.bar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.bar .bl{font-size:11px;color:var(--white);width:54px}
+.bar .bt{flex:1;height:7px;border-radius:6px;background:#1b1436;overflow:hidden}
+.bar .bf{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--cyan),var(--mag))}
+.bar .bv{font-family:'Anton',sans-serif;font-size:12px;color:var(--cyan);width:38px;text-align:right}
+.expo{display:flex;flex-direction:column;gap:7px}
+.expo .e{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.expo .e b{font-family:'Anton',sans-serif;color:var(--gold)}
+.gauge{margin-top:6px;height:8px;border-radius:6px;background:#1b1436;overflow:hidden}
+.gauge .gf{height:100%;width:62%;background:linear-gradient(90deg,#5BE8B0,var(--gold) 80%,#ff6b6b)}
+
+/* settlement ticker visual */
+.tick{display:flex;flex-direction:column;gap:8px;margin-top:24px}
+.tick .row2{display:flex;justify-content:space-between;align-items:center;background:#0e0a1c;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tick .row2 .l{font-size:12px;color:var(--white)}
+.tick .row2 .l small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.tick .row2 .st{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 9px;border-radius:20px}
+.tick .row2 .st.won{background:rgba(91,232,176,.16);color:#7af0c0}
+.tick .row2 .st.void{background:rgba(232,184,75,.16);color:var(--gold)}
+.tick .row2 .st.set{background:rgba(60,224,224,.16);color:var(--cyan)}
+
+/* ===== VARIED SECTION SHAPES (not all 50/50 splits) ===== */
+.fullbleed{position:relative;padding:70px 0;overflow:hidden}
+.fullbleed.tintv{background:linear-gradient(180deg,transparent,rgba(138,43,226,.10),transparent)}
+.fullbleed.tintc{background:linear-gradient(180deg,transparent,rgba(60,224,224,.07),transparent)}
+.fb-head{padding:0 26px;max-width:var(--maxw);margin:0 auto 26px}
+.fb-head .eyebrow{margin-bottom:10px}
+.fb-head h2{font-family:'Anton',sans-serif;font-size:clamp(28px,4.4vw,52px);text-transform:uppercase;line-height:1.08}
+.fb-head h2 em{font-style:normal;color:var(--mag)}
+.fb-head p{color:var(--muted);font-size:16px;margin-top:12px;max-width:60ch}
+.strip{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-snap-type:x mandatory;
+  padding:6px 26px 16px 0;scroll-padding-left:max(26px,calc((100vw - var(--maxw))/2 + 26px))}
+.strip::before{content:"";flex:0 0 max(26px,calc((100vw - var(--maxw))/2 + 26px));height:1px}
+.strip::-webkit-scrollbar{display:none}
+.scard{flex:0 0 232px;scroll-snap-align:start;background:linear-gradient(160deg,#140d28,#0b0816);
+  border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;overflow:hidden}
+.scard .stag{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--cyan);font-weight:800;margin-bottom:12px}
+.scard .smk{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.scard .smk .sn{font-size:13px;color:var(--white);font-weight:600}
+.scard .sodd{font-family:'Anton',sans-serif;font-size:16px;color:var(--cyan)}
+
+.offrow{display:grid;grid-template-columns:1.7fr 1fr;gap:48px;align-items:center;padding:54px 0}
+.offrow.cap-left .cap{order:0}.offrow.cap-left .big-vis{order:2}
+.offrow.cap-left{grid-template-columns:1fr 1.7fr}
+@media(max-width:900px){.offrow,.offrow.cap-left{grid-template-columns:1fr;gap:28px}}
+.offrow .cap .eyebrow{margin-bottom:10px}
+.offrow .cap h2{font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,46px);text-transform:uppercase;line-height:1.1}
+.offrow .cap h2 em{font-style:normal;color:var(--mag)}
+.offrow .cap p{color:var(--muted);font-size:15px;margin-top:14px}
+
+.centered{text-align:center;padding:84px 0;max-width:980px;margin:0 auto}
+.centered h2{font-family:'Anton',sans-serif;font-size:clamp(34px,6vw,66px);text-transform:uppercase;line-height:1.06;letter-spacing:.5px}
+.centered h2 em{font-style:normal;color:var(--mag)}
+.centered .sub{color:var(--muted);font-size:18px;margin:18px auto 0;max-width:60ch}
+.callrow{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:44px}
+.callrow .call{max-width:240px}
+.callrow .call .ci{width:42px;height:42px;margin:0 auto 14px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mag),var(--vio));font-size:18px;color:#fff;font-weight:800}
+.callrow .call h4{font-family:'Anton',sans-serif;font-size:17px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.callrow .call p{color:var(--muted);font-size:14px}
+
+.bigband{position:relative;padding:90px 0;overflow:hidden;
+  background:linear-gradient(180deg,rgba(11,8,22,.86),rgba(11,8,22,.78)),
+             radial-gradient(900px 480px at 78% 50%,rgba(138,43,226,.34),transparent 60%),
+             radial-gradient(700px 380px at 10% 40%,rgba(60,224,224,.18),transparent 60%),
+             url('img/bg-network.jpg') center/cover no-repeat,#0b0816;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bigband .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+@media(max-width:900px){.bigband .wrap{grid-template-columns:1fr;gap:32px}}
+.bigband .huge{font-family:'Anton',sans-serif;font-size:clamp(44px,7.5vw,96px);line-height:.98;text-transform:uppercase;letter-spacing:.5px}
+.bigband .huge em{font-style:normal;color:var(--cyan)}
+.bigband .sub{color:var(--muted);font-size:17px;margin-top:20px;max-width:46ch}
+.bigband .panels{display:flex;flex-direction:column;gap:14px}
+.bigband .bp{background:rgba(20,13,40,.7);border:1px solid var(--line);border-radius:14px;padding:18px 20px;backdrop-filter:blur(6px)}
+.bigband .bp h4{font-family:'Anton',sans-serif;font-size:16px;text-transform:uppercase;letter-spacing:.5px;color:var(--white)}
+.bigband .bp h4 em{font-style:normal;color:var(--mag)}
+.bigband .bp p{color:var(--muted);font-size:14px;margin-top:6px}
+
+.proofwall{padding:64px 0;text-align:center}
+.proofwall .pw-h{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(22px,3vw,34px);letter-spacing:.5px;margin-bottom:8px}
+.proofwall .pw-h em{font-style:normal;color:var(--cyan)}
+.proofwall .pw-sub{color:var(--muted);font-size:15px;margin-bottom:34px}
+.pw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto;padding:0 26px}
+@media(max-width:760px){.pw-grid{grid-template-columns:1fr}}
+.pw-cell{border:1px solid var(--line);border-radius:16px;padding:34px 20px;background:linear-gradient(160deg,#140d28,#0b0816)}
+.pw-cell .pv{font-family:'Anton',sans-serif;font-size:42px;color:var(--gold);line-height:1}
+.pw-cell .pk{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:10px;line-height:1.5}
+
+/* settlement flow timeline (distinct from odds strip) */
+.flow{max-width:980px;margin:30px auto 0;padding:0 26px}
+.flowtrack{display:flex;align-items:stretch;gap:0;position:relative}
+.fstep{flex:1;text-align:center;position:relative;padding:0 10px}
+.fstep .fdot{width:46px;height:46px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+  font-family:'Anton',sans-serif;font-size:16px;color:#fff;background:linear-gradient(135deg,var(--mag),var(--vio));
+  position:relative;z-index:2;box-shadow:0 0 0 6px rgba(138,43,226,.12)}
+.fstep.done .fdot{background:linear-gradient(135deg,var(--cyan),#1d9e9e);box-shadow:0 0 0 6px rgba(60,224,224,.12)}
+.fstep::before{content:"";position:absolute;top:23px;left:-50%;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--mag));z-index:1}
+.fstep:first-child::before{display:none}
+.fstep h4{font-family:'Anton',sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.fstep p{font-size:13px;color:var(--muted);line-height:1.5}
+@media(max-width:760px){.flowtrack{flex-direction:column;gap:22px}
+  .fstep::before{top:-22px;left:50%;width:2px;height:22px;transform:translateX(-50%)}
+  .fstep:first-child::before{display:none}}
+.fcases{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:40px}
+.fcase{border:1px solid var(--line);border-radius:30px;padding:8px 16px;font-size:12.5px;color:var(--muted)}
+.fcase b{color:var(--white);font-weight:700}
+
+/* live in-play filled scene */
+.livescene{position:relative;min-height:440px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(20,13,40,.6),rgba(11,8,22,.85)),
+             radial-gradient(420px 280px at 78% 22%,rgba(60,224,224,.18),transparent 60%),
+             radial-gradient(380px 300px at 18% 80%,rgba(255,46,158,.16),transparent 60%),
+             url('img/bg-network.jpg') center/cover no-repeat;
+  border:1px solid var(--line);box-shadow:0 40px 90px -50px rgba(138,43,226,.6)}
+.livescene::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;
+  background:linear-gradient(140deg,rgba(60,224,224,.5),transparent 45%,rgba(255,46,158,.5));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.livescene .vlabel{position:absolute;top:14px;left:16px;z-index:6}
+.livescene .lphone{position:absolute;left:7%;bottom:-2%;width:236px;z-index:4;filter:drop-shadow(0 40px 70px rgba(138,43,226,.55))}
+.float-toast{position:absolute;z-index:5;background:rgba(14,10,28,.92);border:1px solid var(--line);
+  border-radius:14px;padding:12px 14px;backdrop-filter:blur(8px);box-shadow:0 20px 50px -24px rgba(0,0,0,.8);min-width:172px}
+.float-toast .ft-h{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.float-toast .ft-h .dl{width:7px;height:7px;border-radius:50%;background:#ff3b6b;box-shadow:0 0 0 3px rgba(255,59,107,.25)}
+.float-toast .ft-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--white);margin-bottom:5px}
+.float-toast .ft-row:last-child{margin-bottom:0}
+.float-toast .ft-row .up{color:#5BE8B0;font-family:'Anton',sans-serif}
+.float-toast .ft-row .dn{color:#FF6FB0;font-family:'Anton',sans-serif}
+.toast-tick{top:15%;right:5%;animation:floatT 6s ease-in-out infinite}
+.toast-cash{bottom:13%;right:8%;animation:floatT 7s ease-in-out infinite}
+.toast-flow{top:47%;right:31%;z-index:3;opacity:.97;animation:floatT 8s ease-in-out infinite}
+@keyframes floatT{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.spark{display:flex;align-items:flex-end;gap:2px;height:28px;margin-top:6px}
+.spark i{flex:1;background:linear-gradient(180deg,#5BE8B0,rgba(91,232,176,.2));border-radius:2px}
+@media(max-width:900px){.livescene{min-height:560px}.livescene .lphone{left:50%;transform:translateX(-50%);width:210px}
+  .toast-tick{top:4%;right:4%}.toast-cash{bottom:5%;right:4%}.toast-flow{display:none}}
+
+.trust .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.trust .tline{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(18px,2.4vw,26px);letter-spacing:.5px;color:var(--white);max-width:20ch}
+.trust .tline em{font-style:normal;color:var(--cyan)}
+.trust .tbadges{display:flex;gap:14px;flex-wrap:wrap}
+.tbadge{border:1px solid var(--line);border-radius:12px;padding:14px 18px;text-align:center;background:var(--panel)}
+.tbadge .tv{font-family:'Anton',sans-serif;font-size:22px;color:var(--gold)}
+.tbadge .tk{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* SECTION SUB-NAV (chips) */
+.subnav{position:sticky;top:89px;z-index:40;background:rgba(8,6,15,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.subnav .wrap{display:flex;align-items:center;gap:9px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap;padding-right:30px}
+.subnav .pillarname{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:1.5px;
+  font-size:13px;color:var(--gold);margin-right:8px;flex:0 0 auto}
+.chip{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line);border-radius:30px;padding:8px 16px;transition:.2s;white-space:nowrap;cursor:pointer;flex:0 0 auto}
+.chip:hover{color:var(--white);border-color:var(--cyan)}
+.chip.on{background:var(--mag);color:#fff;border-color:transparent}
+@media(max-width:1280px){
+  .subnav .wrap{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+  .subnav .wrap::-webkit-scrollbar{display:none}
+}
+.sbhero .wrap{position:relative;z-index:3}
+.sbhero .grid{display:grid;grid-template-columns:1.02fr .98fr;gap:50px;align-items:center;padding:70px 0 50px}
+@media(max-width:960px){.sbhero .grid{grid-template-columns:1fr;gap:34px;padding:54px 0 40px}}
+.sbhero .kicker{display:inline-block;font-weight:800;font-size:12px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--ink);background:var(--cyan);padding:7px 14px;border-radius:30px;margin-bottom:22px}
+.sbhero h1{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:1.04;letter-spacing:.5px;
+  font-size:clamp(42px,6.4vw,84px)}
+.sbhero h1 em{font-style:normal;color:var(--mag)}
+.sbhero .lede{margin-top:20px;max-width:48ch;font-size:clamp(16px,1.8vw,19px);color:var(--white);font-weight:500}
+.sbhero .herocta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* LIVE ODDS BOARD (right of hero) */
+.board{background:linear-gradient(180deg,#120c22,#0b0816);border:1px solid var(--line);
+  border-radius:20px;padding:18px;box-shadow:0 40px 90px -40px rgba(138,43,226,.6);position:relative}
+.board::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
+  background:linear-gradient(140deg,rgba(60,224,224,.5),transparent 40%,rgba(255,46,158,.5));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.board .bhead{display:flex;align-items:center;justify-content:space-between;padding:4px 6px 14px}
+.board .live{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:#fff}
+.board .live .dotlive{width:9px;height:9px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 0 0 rgba(255,77,77,.7);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,77,77,.7)}70%{box-shadow:0 0 0 9px rgba(255,77,77,0)}100%{box-shadow:0 0 0 0 rgba(255,77,77,0)}}
+.board .bclock{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:1px;color:var(--cyan)}
+.match{background:#0e0a1c;border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;margin-bottom:10px}
+.match .mtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.match .lg{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700}
+.match .sc{font-family:'Anton',sans-serif;font-size:15px;color:var(--white);letter-spacing:1px}
+.match .teams{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
+.match .teams .t{font-weight:700;font-size:15px;color:var(--white)}
+.odds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.odd{background:#161029;border:1px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center;transition:.25s;cursor:pointer}
+.odd .ol{display:block;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.odd .ov{font-family:'Anton',sans-serif;font-size:18px;color:var(--cyan);letter-spacing:.5px}
+.odd:hover{border-color:var(--mag)}
+.odd.up{animation:flashup .9s}.odd.down{animation:flashdn .9s}
+@keyframes flashup{0%{background:rgba(60,224,224,.28)}100%{background:#161029}}
+@keyframes flashdn{0%{background:rgba(255,46,158,.28)}100%{background:#161029}}
+.odd .ov.arrow-up{color:#5BE8B0}.odd .ov.arrow-down{color:#FF6FB0}
+
+/* BET SLIP (overlaps board) */
+.slip{position:absolute;right:-14px;bottom:-26px;width:212px;background:#15102a;border:1px solid rgba(60,224,224,.35);
+  border-radius:16px;padding:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);z-index:5}
+@media(max-width:520px){.slip{position:static;width:auto;margin-top:14px;right:0;bottom:0}}
+.slip h4{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.slip h4 span{color:var(--mag)}
+.slip .leg{font-size:12px;color:var(--white);padding:7px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
+.slip .leg small{color:var(--muted);display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px}
+.slip .leg b{color:var(--cyan);font-family:'Anton',sans-serif;font-weight:400}
+.slip .stot{display:flex;justify-content:space-between;margin-top:11px;font-size:12px;color:var(--muted)}
+.slip .stot b{color:var(--gold);font-family:'Anton',sans-serif;font-size:16px}
+.slip .sbtn{margin-top:11px;text-align:center;background:var(--mag);color:#fff;font-weight:800;font-size:12px;
+  letter-spacing:1px;text-transform:uppercase;padding:10px;border-radius:30px}
+
+/* HERO STAT STRIP */
+.statstrip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(14,10,28,.5)}
+.statstrip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0}
+@media(max-width:760px){.statstrip .wrap{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:26px 22px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat .sv{font-family:'Anton',sans-serif;font-size:clamp(26px,3.4vw,40px);color:var(--white);line-height:1}
+.stat .sv em{font-style:normal;color:var(--mag)}
+.stat .sl{margin-top:8px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* APP UI SHOWCASE (lower on page) */
+.showcase{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+@media(max-width:900px){.showcase{grid-template-columns:1fr;gap:34px}}
+.phone{justify-self:center;width:300px;max-width:88vw;background:#0b0816;border:1px solid var(--line);
+  border-radius:34px;padding:14px 12px 18px;box-shadow:0 50px 110px -40px rgba(138,43,226,.55);position:relative}
+.phone .notch{width:120px;height:6px;background:#23203a;border-radius:6px;margin:2px auto 14px}
+.phone .pcard{background:#120c22;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+.phone .pcard .ph{display:flex;justify-content:space-between;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.phone .pcard .ph .l{color:#ff6b6b;font-weight:800}
+.phone .pteam{display:flex;justify-content:space-between;font-size:13px;color:#fff;font-weight:600;margin-bottom:4px}
+.phone .podds{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.phone .po{background:#181233;border-radius:8px;text-align:center;padding:7px 2px;font-family:'Anton',sans-serif;font-size:14px;color:var(--cyan)}
+.phone .po.sel{background:var(--mag);color:#fff}
+.phone .swipehint{text-align:center;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-top:6px}
+
+/* SECTIONS */
+section{position:relative;scroll-margin-top:165px}
+.block{padding:90px 0}
+.block.tight{padding:60px 0}
+.block.nopad{padding:0}
+.eyebrow{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:14px}
+h2.big{font-family:'Anton',sans-serif;font-size:clamp(34px,5.5vw,64px);text-transform:uppercase;
+  line-height:1.08;letter-spacing:.5px;max-width:18ch}
+h2.big em{font-style:normal;color:var(--mag)}
+.lead{color:var(--muted);font-size:18px;max-width:60ch;margin-top:18px}
+.prose p{color:var(--muted);font-size:16px;margin-bottom:16px;max-width:70ch}
+.prose a{color:var(--cyan);border-bottom:1px solid rgba(60,224,224,.4)}
+
+/* QUOTE */
+.pullquote{border-left:3px solid var(--gold);padding:6px 0 6px 26px;margin:30px 0;
+  font-family:'Anton',sans-serif;font-size:clamp(22px,3vw,34px);text-transform:uppercase;
+  line-height:1.1;color:var(--white)}
+.pullquote cite{display:block;font-family:'Archivo',sans-serif;font-size:14px;text-transform:none;
+  font-style:normal;color:var(--muted);margin-top:12px;letter-spacing:1px}
+
+/* CAPABILITY LIST */
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.capcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px;
+  transition:.25s;position:relative;overflow:hidden}
+.capcard:hover{background:var(--panel2);transform:translateY(-4px)}
+.capcard h3{font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:12px}
+.capcard h3 .dot{color:var(--cyan)}
+.capcard p{color:var(--muted);font-size:15px}
+.capcard ul{margin:10px 0 0;padding-left:18px}
+.capcard li{color:var(--muted);font-size:14.5px;margin-bottom:7px}
+.capcard::after{content:"";position:absolute;left:0;top:0;height:100%;width:3px;
+  background:linear-gradient(var(--mag),var(--cyan));transform:scaleY(0);transform-origin:top;transition:transform .3s}
+.capcard:hover::after{transform:scaleY(1)}
+
+/* BENEFIT GRID */
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.benefit{padding:26px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.benefit .bk{font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px}
+.benefit p{color:var(--muted);font-size:14.5px}
+
+/* WHY 3-up */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:820px){.why{grid-template-columns:1fr}}
+.whycard{padding:30px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.whycard h3{font-family:'Anton',sans-serif;font-size:21px;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:12px;color:var(--white)}
+.whycard h3 em{font-style:normal;color:var(--mag)}
+.whycard p{color:var(--muted);font-size:15px}
+
+/* CTA */
+.ctaband{position:relative;text-align:center;padding:120px 26px;overflow:hidden}
+.ctaband .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.ctaband::after{content:"";position:absolute;inset:0;background:rgba(8,6,15,.45);z-index:1}
+.ctaband > *{position:relative;z-index:2}
+.ctaband h2{font-family:'Anton',sans-serif;font-size:clamp(40px,8vw,96px);text-transform:uppercase;line-height:1.08}
+.ctaband p{margin:18px auto 30px;max-width:46ch;font-size:17px;font-weight:500}
+
+/* FOOTER */
+footer{background:var(--ink);padding:70px 0 36px;border-top:1px solid var(--line)}
+.ftop{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:44px}
+@media(max-width:760px){.ftop{grid-template-columns:1fr;gap:32px}}
+.fbrand{font-family:'Anton',sans-serif;font-size:30px;text-transform:uppercase}
+.fbrand b{color:var(--mag)}
+.ftop p{color:var(--muted);font-size:14px;margin-top:14px;max-width:36ch}
+.fcol h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:16px;font-weight:800}
+.fcol a{display:block;color:var(--muted);font-size:14px;margin-bottom:10px;transition:.2s}
+.fcol a:hover{color:var(--white)}
+.ftagline{color:var(--mag);font-weight:700;font-size:16px;margin-top:10px;letter-spacing:.3px}
+.fbot{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;color:var(--muted);font-size:13px}
+
+.slogan-strip{text-align:center;padding:40px 0;font-family:'Anton',sans-serif;
+  font-size:clamp(20px,3vw,30px);text-transform:uppercase;color:var(--gold);letter-spacing:1px}
+
+.sr{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.sr.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sr{opacity:1;transform:none}}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+
+.nav-links a.norm{color:var(--white)}
+.nav-links a.norm b{color:var(--mag)}
+.nav-links a.norm:hover{color:var(--mag)}
+.ig{text-transform:lowercase !important}
+
+/* ===== MOBILE NAV (hamburger) ===== */
+.navburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;
+  background:none;border:0;cursor:pointer;padding:0;z-index:120}
+.navburger span{display:block;height:2px;width:26px;background:var(--white);border-radius:2px;
+  transition:transform .3s,opacity .2s}
+body.menu-open .navburger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .navburger span:nth-child(2){opacity:0}
+body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:1024px){
+  .navburger{display:flex;margin-left:auto;order:9}
+  body.menu-open nav,body.menu-open nav#nav{z-index:9999;backdrop-filter:none}
+  .nav-links{position:fixed;top:0;right:0;bottom:0;width:78%;max-width:340px;display:flex !important;margin:0 !important;white-space:normal;flex-direction:column;justify-content:center;align-items:flex-start;gap:26px;padding:0 0 0 40px;background:linear-gradient(160deg,#16121F 0%,#0C0913 60%,#08060F 100%);box-shadow:-20px 0 60px rgba(0,0,0,.6);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:9999;font-size:20px;letter-spacing:1.2px;border-left:1px solid rgba(60,224,224,.18)}
+  body.menu-open .nav-links{transform:translateX(0)}
+  body.menu-open{overflow:hidden} body.menu-open::before{content:'';position:fixed;inset:0;background:rgba(8,6,15,.6);backdrop-filter:blur(3px);z-index:9998}
+  .nav-links a.lnk{color:var(--white)}
+  .nav-links .pill{margin-top:10px}
+  .nav-links .hide{display:flex}
+}
+.navclose{display:none}
+@media(max-width:1024px){.navclose{display:block;position:absolute;top:22px;right:22px;font-size:30px;line-height:1;color:#fff;background:none;border:0;cursor:pointer;z-index:10000}}
+</style></head><body><nav id="nav">
+  <a class="brand" href="index.html"><img src="logo-zm.png" alt="Zefr Media" class="brand-mark"><span class="wm"><span class="zefr">ZEFR</span> <span class="media">MEDIA</span></span></a>
+  <button class="navburger" id="navburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-links"><button class="navclose" id="navclose" aria-label="Close menu">&times;</button>
+    <a class="lnk" href="platform.html">PLATFORM</a>
+    <a class="lnk" href="gaming.html">GAMING</a>
+    <a class="lnk active" href="sportsbook.html">BETTING</a>
+    <a class="lnk" href="growth.html">GROWTH</a>
+    <a class="lnk" href="services.html">SERVICES</a>
+    <a class="lnk" href="about.html">COMPANY</a>
+    <a class="lnk norm" href="norm-game.html">NORM<b>.</b>GAME</a>
+    <a class="pill" href="contact.html">Start a Project</a>
+  </div>
+</nav>
+
+<!-- SECTION SUB-NAV (chips above the hero title) -->
+<div class="subnav">
+  <div class="wrap">
+    <span class="pillarname">Sportsbook</span>
+    <a class="chip on" href="#overview">Overview</a>
+    <a class="chip" href="#odds">Odds</a>
+    <a class="chip" href="#trading">Trading</a>
+    <a class="chip" href="#risk">Risk</a>
+    <a class="chip" href="#live">Live / In-Play</a>
+    <a class="chip" href="#data">Sports Data Feeds</a>
+  </div>
+</div>
+
+<!-- ODDS-BOARD HERO -->
+<header class="sbhero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h1>Rebuilt from the <em>ground up.</em><br>Proven from the start.</h1>
+        <p class="lede">A real-money sportsbook proven in live production — rebuilt from the first line on a leading AI infrastructure. Not AI bolted on at the end. AI as the foundation the whole book runs on.</p>
+        <div class="herocta">
+          <a class="pill lg" href="contact.html">Start Your Sportsbook Project</a>
+        </div>
+      </div>
+
+      <!-- LAYERED DEVICE CLUSTER -->
+      <div class="cluster">
+        <span class="orb coin o1"></span>
+        <span class="orb coin o2"></span>
+        <span class="orb o3"></span>
+
+        <div class="board" id="board">
+          <div class="bhead">
+            <span class="live"><span class="dotlive"></span> Live In-Play</span>
+            <span class="bclock" id="bclock">67:12</span>
+          </div>
+          <div class="match">
+            <div class="mtop"><span class="lg">Soccer · Premier Division</span><span class="sc">1 – 1</span></div>
+            <div class="teams"><span class="t">North City FC</span><span class="t">Harbour United</span></div>
+            <div class="odds" data-mkt="soccer">
+              <div class="odd"><span class="ol">1</span><span class="ov">2.10</span></div>
+              <div class="odd"><span class="ol">X</span><span class="ov">3.25</span></div>
+              <div class="odd"><span class="ol">2</span><span class="ov">3.40</span></div>
+            </div>
+          </div>
+          <div class="match" style="margin-bottom:0">
+            <div class="mtop"><span class="lg">Basketball · National League</span><span class="sc">Q3 · 71–68</span></div>
+            <div class="teams"><span class="t">Capital Kings</span><span class="t">Coastal Waves</span></div>
+            <div class="odds" data-mkt="bball">
+              <div class="odd"><span class="ol">Home</span><span class="ov">1.85</span></div>
+              <div class="odd"><span class="ol">Spread</span><span class="ov">1.91</span></div>
+              <div class="odd"><span class="ol">Away</span><span class="ov">1.95</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FLOATING PLAYER PHONE -->
+        <div class="phone phone-float">
+          <div class="notch"></div>
+          <div class="pcard">
+            <div class="ph"><span>Bet Slip · SGP</span><span class="l">3 LEGS</span></div>
+            <div class="pteam"><span>North City Win</span><span>2.10</span></div>
+            <div class="pteam"><span>Over 2.5 Goals</span><span>1.80</span></div>
+            <div class="pteam"><span>Kings -4.5</span><span>1.91</span></div>
+            <div class="podds" style="grid-template-columns:1fr"><div class="po sel" style="font-size:16px">7.22 ×</div></div>
+          </div>
+          <div class="swipehint">Tap odds to build →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO STAT STRIP -->
+  <div class="statstrip">
+    <div class="wrap">
+      <div class="stat sr"><div class="sv"><em>30+</em></div><div class="sl">Sports &amp; Markets</div></div>
+      <div class="stat sr"><div class="sv">Sub-<em>second</em></div><div class="sl">Live Odds Refresh</div></div>
+      <div class="stat sr"><div class="sv"><em>AI</em>-Native</div><div class="sl">Built In, Not Bolted On</div></div>
+      <div class="stat sr"><div class="sv"><em>Proven</em></div><div class="sl">Live Real-Money Production</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- OVERVIEW (centered intro) -->
+<section id="overview" class="block nopad">
+  <div class="centered" style="padding-top:70px">
+    <div class="eyebrow sr" style="text-align:center">The Platform</div>
+    <h2 class="sr">A proven book.<br>Rebuilt around <em>intelligence.</em></h2>
+    <p class="sub sr">Not a new platform hoping to prove itself, and not an old one patched to look modern. A complete ground-up rebuild on the foundation of a real-money book proven in live production — now with AI as the infrastructure underneath everything, not a feature stapled to the front end.</p>
+  </div>
+</section>
+
+<!-- ODDS & PRICING (full-bleed horizontal strip) -->
+<section id="odds" class="fullbleed tintc">
+  <div class="fb-head">
+    <div class="sr"><div class="eyebrow">Odds</div>
+    <h2>Your prices. Your <em>margin.</em></h2>
+    <p>Pre-match and in-play odds across 30+ sports, with your own overrounds, ladders and supremacies set per fixture and market — layered over the data feed you choose, so your lines aren't the same as every other operator on a shared vendor book.</p></div>
+  </div>
+  <div class="strip sr">
+    <div class="scard"><div class="stag">⚽ Soccer · Live</div><div class="smk"><span class="sn">North City Win</span><span class="sodd">2.10</span></div><div class="smk"><span class="sn">Draw</span><span class="sodd">3.25</span></div><div class="smk"><span class="sn">Over 2.5</span><span class="sodd">1.80</span></div></div>
+    <div class="scard"><div class="stag">🏀 Basketball</div><div class="smk"><span class="sn">Capital Kings</span><span class="sodd">1.85</span></div><div class="smk"><span class="sn">Spread −4.5</span><span class="sodd">1.91</span></div><div class="smk"><span class="sn">Total O 214.5</span><span class="sodd">1.90</span></div></div>
+    <div class="scard"><div class="stag">🎾 Tennis · ATP</div><div class="smk"><span class="sn">A. Moreau</span><span class="sodd">1.72</span></div><div class="smk"><span class="sn">R. Castellanos</span><span class="sodd">2.15</span></div><div class="smk"><span class="sn">Next set</span><span class="sodd">1.90</span></div></div>
+    <div class="scard"><div class="stag">🏏 Cricket · T20</div><div class="smk"><span class="sn">Eastern Eagles</span><span class="sodd">1.62</span></div><div class="smk"><span class="sn">Royal Lions</span><span class="sodd">2.35</span></div><div class="smk"><span class="sn">Top batter</span><span class="sodd">4.50</span></div></div>
+    <div class="scard"><div class="stag">🎮 Esports · CS</div><div class="smk"><span class="sn">Team Vortex</span><span class="sodd">1.55</span></div><div class="smk"><span class="sn">Team Onyx</span><span class="sodd">2.50</span></div><div class="smk"><span class="sn">Map 2</span><span class="sodd">1.88</span></div></div>
+    <div class="scard"><div class="stag">🏒 Hockey</div><div class="smk"><span class="sn">Northern Frost</span><span class="sodd">2.05</span></div><div class="smk"><span class="sn">Bay Hawks</span><span class="sodd">1.80</span></div><div class="smk"><span class="sn">Both score</span><span class="sodd">1.66</span></div></div>
+  </div>
+</section>
+
+<!-- TRADING (off-ratio, visual dominant) -->
+<section id="trading" class="block tight">
+  <div class="wrap">
+    <div class="offrow">
+      <div class="big-vis vis sr" style="min-height:340px">
+        <span class="vlabel">Trading &amp; risk console</span>
+        <div class="vpad" style="padding-top:42px">
+          <div class="dash">
+            <div class="panel">
+              <h5>Market movement</h5>
+              <div class="bar"><span class="bl">Soccer</span><span class="bt"><span class="bf" style="width:78%"></span></span><span class="bv">+2.4</span></div>
+              <div class="bar"><span class="bl">Bball</span><span class="bt"><span class="bf" style="width:54%"></span></span><span class="bv">−1.1</span></div>
+              <div class="bar"><span class="bl">Tennis</span><span class="bt"><span class="bf" style="width:66%"></span></span><span class="bv">+0.8</span></div>
+              <div class="bar"><span class="bl">Cricket</span><span class="bt"><span class="bf" style="width:40%"></span></span><span class="bv">−0.5</span></div>
+              <div class="bar" style="margin-bottom:0"><span class="bl">Esports</span><span class="bt"><span class="bf" style="width:72%"></span></span><span class="bv">+1.6</span></div>
+            </div>
+            <div class="panel">
+              <h5>Book exposure</h5>
+              <div class="expo">
+                <div class="e"><span>Open liability</span><b>£182k</b></div>
+                <div class="e"><span>Max event</span><b>£44k</b></div>
+                <div class="e"><span>Hold target</span><b>7.2%</b></div>
+              </div>
+              <div class="gauge"><span class="gf"></span></div>
+              <div class="e" style="margin-top:8px"><span>Balance</span><span style="color:#7af0c0">Within limit</span></div>
+              <h5 style="margin-top:16px">SGP correlation</h5>
+              <div class="e"><span>Legs priced</span><span style="color:var(--cyan)">Auto</span></div>
+              <div class="e"><span>Blocked combos</span><b>12</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap sr">
+        <div class="eyebrow">Trading</div>
+        <h2>Trading that protects <em>your hold.</em></h2>
+        <p>The capability operators struggle most to buy off-the-shelf — because the best books keep it in-house. Automation and human traders as one system: dynamic odds and limits, full-audit overrides, and correlation-aware SGP pricing that blocks the legs that leak money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISK (centered with inline callouts) -->
+<section id="risk" class="block nopad">
+  <div class="centered">
+    <div class="eyebrow sr" style="text-align:center">Risk Management</div>
+    <h2 class="sr">Protect the book.<br>Keep the <em>players.</em></h2>
+    <p class="sub sr">The off-the-shelf trap is throttling profitable players straight into a competitor's app. This is tuned for the opposite — limits land where the money's leaking, not on the recreational base that funds the business.</p>
+    <div class="callrow">
+      <div class="call sr"><div class="ci">⚡</div><h4>Real-Time Exposure</h4><p>Liability across every market and outcome, with dynamic limits that stop one event sinking the book.</p></div>
+      <div class="call sr"><div class="ci">◎</div><h4>Sharp Detection</h4><p>Behaviour models separate the costly action from the base — so limits land where they should.</p></div>
+      <div class="call sr"><div class="ci">⛨</div><h4>Integrity Built In</h4><p>Velocity limits, suspicious-betting queues and monitoring aligned to your leagues and regulators.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE / IN-PLAY (off-ratio flipped, phone scene dominant) -->
+<section id="live" class="block tight">
+  <div class="wrap">
+    <div class="offrow cap-left">
+      <div class="cap sr">
+        <div class="eyebrow">Live / In-Play</div>
+        <h2>Real-time betting that <em>holds up.</em></h2>
+        <p>Odds that refresh in real time as the game moves, one-tap cash-out priced off the live model, and a live engine that runs isolated — so a marquee fixture at peak load scales on its own without slowing the rest of the book.</p>
+      </div>
+
+      <div class="livescene sr">
+        <span class="vlabel">In-play engine</span>
+
+        <!-- anchored phone, overlapping bottom edge -->
+        <div class="phone lphone">
+          <div class="notch"></div>
+          <div class="pcard">
+            <div class="ph"><span>Soccer · In-Play</span><span class="l">● LIVE 67'</span></div>
+            <div class="pteam"><span>North City FC</span><span>1</span></div>
+            <div class="pteam"><span>Harbour United</span><span>1</span></div>
+            <div class="podds"><div class="po sel">2.10</div><div class="po">3.25</div><div class="po">3.40</div></div>
+          </div>
+          <div class="pcard">
+            <div class="ph"><span>Next Goal</span><span class="l">● LIVE</span></div>
+            <div class="podds"><div class="po">1.95</div><div class="po">No goal 2.40</div></div>
+          </div>
+          <div class="pcard" style="margin-bottom:0">
+            <div class="ph"><span>Cash out</span><span class="l" style="color:#7af0c0">+£18.40</span></div>
+            <div class="podds" style="grid-template-columns:1fr"><div class="po sel" style="font-size:14px">Cash out now</div></div>
+          </div>
+        </div>
+
+        <!-- floating live odds-tick toast -->
+        <div class="float-toast toast-tick">
+          <div class="ft-h"><span class="dl"></span> Odds moving</div>
+          <div class="ft-row"><span>North City</span><span class="up">2.10 ▲</span></div>
+          <div class="ft-row"><span>Draw</span><span class="dn">3.25 ▼</span></div>
+          <div class="ft-row"><span>Harbour</span><span class="up">3.40 ▲</span></div>
+        </div>
+
+        <!-- floating game-flow / momentum toast (echoes the Discover screen) -->
+        <div class="float-toast toast-flow">
+          <div class="ft-h">Game flow · 67'</div>
+          <div class="ft-row"><span>Momentum</span><span class="up">62%</span></div>
+          <div class="spark"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:60%"></i><i style="height:72%"></i><i style="height:85%"></i><i style="height:100%"></i></div>
+        </div>
+
+        <!-- floating cash-out confirmation toast -->
+        <div class="float-toast toast-cash">
+          <div class="ft-h" style="color:#7af0c0">✓ Cashed out</div>
+          <div class="ft-row"><span>Returned</span><span class="up">£68.40</span></div>
+          <div class="ft-row"><span>Profit</span><span class="up">+£18.40</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SPORTS DATA FEEDS (big-statement band, network cityscape) -->
+<section id="data" class="bigband">
+  <div class="wrap">
+    <div class="sr">
+      <div class="eyebrow">Sports Data Feeds</div>
+      <h1 class="huge">Feed-agnostic.<br>Intelligence <em>on top.</em></h1>
+      <p class="sub">Integrate the data partner that fits each market, then layer your own pricing, models and AI signals over it — so your lines, your live markets and your settlement run on data you control, not a vendor's locked default.</p>
+    </div>
+    <div class="panels sr">
+      <div class="bp"><h4>Multi-Feed <em>Integration</em></h4><p>Connect best-fit pre-match, in-play and results providers per sport and per market, with failover between sources.</p></div>
+      <div class="bp"><h4>Your Pricing <em>Layer</em></h4><p>Overrounds, ladders and supremacies applied on top of raw feed data — and AI line-movement signals wired in at the data layer, not bolted on.</p></div>
+      <div class="bp"><h4>Settlement <em>Source of Truth</em></h4><p>Official results ingested and matched to open markets, driving fast, exact, fully-auditable grading end to end.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF WALL -->
+<div class="proofwall">
+  <div class="pw-h sr">Built and run by operators — <em>not theorised by an agency.</em></div>
+  <div class="pw-sub sr">Proven. Not promised.</div>
+  <div class="pw-grid">
+    <div class="pw-cell sr"><div class="pv">1995</div><div class="pk">One of the first<br>online gaming licences</div></div>
+    <div class="pw-cell sr"><div class="pv">Top 5</div><div class="pk">North American<br>sportsbook, built &amp; run</div></div>
+    <div class="pw-cell sr"><div class="pv">Live</div><div class="pk">Real-money<br>production proven</div></div>
+  </div>
+</div>
+
+<div class="slogan-strip sr">Proven. Not promised.</div>
+
+<!-- CTA -->
+<section class="ctaband">
+  <img class="bgimg" src="https://vid.cdn-website.com/27af0057/videos/iStock-1523247662-v.mp4" alt="" onerror="this.style.display='none'">
+  <h2 class="display">Build your book on a<br>proven engine.</h2>
+  <p>Talk to a team that built and ran a real-money sportsbook — and rebuilt it, AI-native, from the ground up.</p>
+  <a class="pill lg" href="contact.html">Start a Project</a>
+</section>
+
+<footer><div class="wrap">
+  <div class="ftop">
+    <div><div class="fbrand"><img src="logo-zm.png" alt="Zefr Media" class="brand-mark"><span class="wm"><span class="zefr">ZEFR</span> <span class="media">MEDIA</span></span></div>
+      <p class="ftagline">Grow Better With Zefr.™</p>
+      <p>Operator-built <span class="ig">i</span>Gaming — platform, gaming, betting, growth and services for ambitious operators. Grow Better With Zefr.™</p></div>
+    <div class="fcol"><h4>Capabilities</h4>
+      <a href="platform.html">Platform</a>
+      <a href="gaming.html">Gaming</a>
+      <a href="sportsbook.html">Betting</a>
+      <a href="growth.html">Growth</a>
+      <a href="services.html">Services</a></div>
+    <div class="fcol"><h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="history.html">Our <span class="ig">i</span>Gaming History</a>
+      <a href="norm-game.html">NORM.GAME</a>
+      <a href="contact.html">Contact</a></div>
+  </div>
+  <div class="fbot"><span>© 2026 Zefr Media Inc. All rights reserved.</span><span>Grow Better With Zefr.™</span></div>
+</div></footer><script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.sr').forEach(el=>io.observe(el));
+// section chip active-state on scroll
+const chips=[...document.querySelectorAll('.subnav .chip')];
+const secs=chips.map(c=>document.querySelector(c.getAttribute('href')));
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
+  const id='#'+e.target.id;chips.forEach(c=>c.classList.toggle('on',c.getAttribute('href')===id));}}),{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>s&&so.observe(s));
+// live odds board — tick values to feel alive
+(function(){
+  var ovs=[...document.querySelectorAll('#board .odd')];
+  function jitter(){
+    var cell=ovs[Math.floor(Math.random()*ovs.length)];
+    var el=cell.querySelector('.ov');
+    var cur=parseFloat(el.textContent); if(isNaN(cur))return;
+    var delta=(Math.random()*0.12-0.06);
+    var next=Math.max(1.05,cur+delta);
+    var up=next>cur;
+    el.textContent=next.toFixed(2);
+    cell.classList.remove('up','down');void cell.offsetWidth;
+    cell.classList.add(up?'up':'down');
+  }
+  setInterval(jitter,1400);
+  // match clock
+  var clk=document.getElementById('bclock'),m=67,s=12;
+  if(clk)setInterval(function(){s++;if(s>59){s=0;m++}clk.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;},1000);
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById('navburger');
+  if(!b) return;
+  var body=document.body;
+  function close(){body.classList.remove('menu-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open menu');}
+  var x=document.getElementById('navclose'); if(x){x.addEventListener('click',close);}
+  b.addEventListener('click',function(){
+    var open=body.classList.toggle('menu-open');
+    b.setAttribute('aria-expanded',open?'true':'false');
+    b.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
+</body></html>
