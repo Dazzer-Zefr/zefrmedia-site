@@ -1,5 +1,17 @@
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  _TEMPLATE.html — parent of every Zefr pillar page.
+  Extracted from sportsbook.html (verified). Design is LOCKED.
+  Rules: sections come from Zefr_Site_Structure_FINAL.xlsx — never invent.
+  One signature element per page. No mirrored 50/50 reflex. No fake 01/02/03.
+  Headers = plain capability+outcome. Brand tokens only. Zero inline-style layout.
+  Constants (nav, proofwall, slogan strip, footer, base JS) stay untouched.
+  Ship gate: Playwright 1280px + 390px, screenshots reviewed.
+  ═══════════════════════════════════════════════════════════════════
+-->
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- ═ SLOT:TITLE+META — page title & description ═ -->
 <title>Sportsbook | Zefr Media</title><meta name="description" content="A proven real-money sportsbook, rebuilt from the ground up on a leading AI infrastructure — not AI bolted on afterwards.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -475,6 +487,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   </div>
 </nav>
 
+<!-- ═ SLOT:SUBNAV — pillarname + one chip per section (hrefs = section ids) ═ -->
 <!-- SECTION SUB-NAV (chips above the hero title) -->
 <div class="subnav">
   <div class="wrap">
@@ -489,6 +502,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 </div>
 
 <!-- ODDS-BOARD HERO -->
+<!-- ═ SLOT:HERO — h1 (capability+outcome, GiG model), lede, CTA pill "Start Your [Pillar] Project", hero visual cluster = the ONE signature element per page, stat strip (4 stats) ═ -->
 <header class="sbhero">
   <div class="wrap">
     <div class="grid">
@@ -558,6 +572,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   </div>
 </header>
 
+<!-- ═ SLOT:SECTIONS — one section per spreadsheet entry; treatments available: .block.nopad centered / .fullbleed.tintc strip / .block.tight offrow (visual-dominant) / .block.tight offrow.cap-left / .bigband. Each section must do a DIFFERENT job. ═ -->
 <!-- OVERVIEW (centered intro) -->
 <section id="overview" class="block nopad">
   <div class="centered" style="padding-top:70px">
@@ -714,6 +729,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   </div>
 </section>
 
+<!-- ═ CONSTANT:PROOFWALL — identical on every pillar page, do not edit ═ -->
 <!-- PROOF WALL -->
 <div class="proofwall">
   <div class="pw-h sr">Built and run by operators — <em>not theorised by an agency.</em></div>
@@ -727,6 +743,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 
 <div class="slogan-strip sr">Proven. Not promised.</div>
 
+<!-- ═ SLOT:CTABAND — headline + one line + pill (bg video from vid.cdn-website.com/27af0057/videos/) ═ -->
 <!-- CTA -->
 <section class="ctaband">
   <img class="bgimg" src="https://vid.cdn-website.com/27af0057/videos/iStock-1523247662-v.mp4" alt="" onerror="this.style.display='none'">
@@ -764,6 +781,7 @@ const secs=chips.map(c=>document.querySelector(c.getAttribute('href')));
 const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
   const id='#'+e.target.id;chips.forEach(c=>c.classList.toggle('on',c.getAttribute('href')===id));}}),{rootMargin:'-45% 0px -50% 0px'});
 secs.forEach(s=>s&&so.observe(s));
+// ═ SLOT:PAGE_JS — replace with this page's signature-element animation ═
 // live odds board — tick values to feel alive
 (function(){
   var ovs=[...document.querySelectorAll('#board .odd')];

@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sportsbook | Zefr Media</title><meta name="description" content="A proven real-money sportsbook, rebuilt from the ground up on a leading AI infrastructure — not AI bolted on afterwards.">
+<title>Prediction Markets | Zefr Media</title><meta name="description" content="Operator-led prediction markets consulting — entry assessment, product and liquidity design, and licensing pathways for event contracts.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -66,7 +66,7 @@ nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:var(--line)}
   background:linear-gradient(180deg,rgba(8,6,15,.82),rgba(8,6,15,.72) 45%,rgba(8,6,15,.92)),
              radial-gradient(1100px 520px at 80% -8%,rgba(138,43,226,.42),transparent 58%),
              radial-gradient(820px 420px at 8% 14%,rgba(60,224,224,.20),transparent 55%),
-             url('img/bg-towers.jpg') center 18%/cover no-repeat,var(--ink)}
+             url('img/bg-network.jpg') center 30%/cover no-repeat,var(--ink)}
 .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.9;z-index:1;pointer-events:none}
 .orb.coin{background:radial-gradient(circle at 35% 30%,#FFE9A8,#E8B84B 55%,#9c7415);box-shadow:0 30px 60px -20px rgba(232,184,75,.55)}
 .orb.o1{width:74px;height:74px;top:18%;right:46%;animation:float1 7s ease-in-out infinite}
@@ -176,7 +176,7 @@ nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:var(--line)}
   background:linear-gradient(180deg,rgba(11,8,22,.86),rgba(11,8,22,.78)),
              radial-gradient(900px 480px at 78% 50%,rgba(138,43,226,.34),transparent 60%),
              radial-gradient(700px 380px at 10% 40%,rgba(60,224,224,.18),transparent 60%),
-             url('img/bg-network.jpg') center/cover no-repeat,#0b0816;
+             url('img/bg-towers.jpg') center/cover no-repeat,#0b0816;
   border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .bigband .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
 @media(max-width:900px){.bigband .wrap{grid-template-columns:1fr;gap:32px}}
@@ -460,6 +460,21 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 
 /* mono data UI — JetBrains Mono for console/numeric readouts (site pattern) */
 .bclock,.ov,.sodd,.bv,.expo b,.ft-row span:last-child,.sc,.pv,.pteam span:last-child{font-family:'JetBrains Mono',monospace}
+
+/* ═ page signature: live probability market board ═ */
+.pmrow{padding:10px 0;border-bottom:1px solid var(--line)}
+.pmrow:last-child{border-bottom:0;padding-bottom:0}
+.pmq{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--white);font-weight:600}
+.pmq .cat{color:var(--muted);font-weight:500;white-space:nowrap}
+.pmprices{display:flex;align-items:center;gap:8px;margin-top:7px}
+.pmprices .py,.pmprices .pn{font-family:'JetBrains Mono',monospace;font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line);transition:.25s}
+.pmprices .py{color:var(--cyan);background:rgba(60,224,224,.08)}
+.pmprices .pn{color:var(--muted)}
+.pbar{flex:1;height:6px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden}
+.pbf{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--vio),var(--cyan));transition:width .5s ease}
+.pmrow.up .py{border-color:rgba(60,224,224,.55);box-shadow:0 0 14px -4px rgba(60,224,224,.6)}
+.pmrow.down .py{border-color:rgba(255,46,158,.55);box-shadow:0 0 14px -4px rgba(255,46,158,.5)}
+.volt{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:12px}
 </style></head><body><nav id="nav">
   <a class="brand" href="index.html"><img src="logo-zm.png" alt="Zefr Media" class="brand-mark"><span class="wm"><span class="zefr">ZEFR</span> <span class="media">MEDIA</span></span></a>
   <button class="navburger" id="navburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -478,13 +493,12 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 <!-- SECTION SUB-NAV (chips above the hero title) -->
 <div class="subnav">
   <div class="wrap">
-    <span class="pillarname">Sportsbook</span>
+    <span class="pillarname">Prediction Markets</span>
     <a class="chip on" href="#overview">Overview</a>
-    <a class="chip" href="#odds">Odds</a>
-    <a class="chip" href="#trading">Trading</a>
-    <a class="chip" href="#risk">Risk</a>
-    <a class="chip" href="#live">Live / In-Play</a>
-    <a class="chip" href="#data">Sports Data Feeds</a>
+    <a class="chip" href="#market">The Product</a>
+    <a class="chip" href="#routes">Routes In</a>
+    <a class="chip" href="#regulation">Regulation</a>
+    <a class="chip" href="#zefr">Zefr's Role</a>
   </div>
 </div>
 
@@ -493,55 +507,48 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="wrap">
     <div class="grid">
       <div>
-        <h1>Rebuilt from the <em>ground up.</em><br>Proven from the start.</h1>
-        <p class="lede">A real-money sportsbook proven in live production — rebuilt from the first line on a leading AI infrastructure. Not AI bolted on at the end. AI as the foundation the whole book runs on.</p>
+        <h1>Prediction markets,<br>without the <em>guesswork.</em></h1>
+        <p class="lede">Event contracts went from novelty to roughly $24&nbsp;billion a month in under two years — and sports now drives most of the volume. Whether you distribute, embed or build your own, entering is an operator decision: pricing, liquidity, licensing and what it does to your book.</p>
         <div class="herocta">
-          <a class="pill lg" href="contact.html">Start Your Sportsbook Project</a>
+          <a class="pill lg" href="contact.html">Start Your Prediction Markets Project</a>
         </div>
       </div>
 
-      <!-- LAYERED DEVICE CLUSTER -->
+      <!-- SIGNATURE ELEMENT: live probability market board -->
       <div class="cluster">
         <span class="orb coin o1"></span>
         <span class="orb coin o2"></span>
         <span class="orb o3"></span>
 
-        <div class="board" id="board">
+        <div class="board" id="pmboard">
           <div class="bhead">
-            <span class="live"><span class="dotlive"></span> Live In-Play</span>
-            <span class="bclock" id="bclock">67:12</span>
+            <span class="live"><span class="dotlive"></span> Live Markets</span>
+            <span class="volt" id="pmvol">24h Vol $1.82B</span>
           </div>
-          <div class="match">
-            <div class="mtop"><span class="lg">Soccer · Premier Division</span><span class="sc">1 – 1</span></div>
-            <div class="teams"><span class="t">North City FC</span><span class="t">Harbour United</span></div>
-            <div class="odds" data-mkt="soccer">
-              <div class="odd"><span class="ol">1</span><span class="ov">2.10</span></div>
-              <div class="odd"><span class="ol">X</span><span class="ov">3.25</span></div>
-              <div class="odd"><span class="ol">2</span><span class="ov">3.40</span></div>
-            </div>
+          <div class="pmrow" data-yes="31">
+            <div class="pmq"><span>Spain to win the World Cup</span><span class="cat">⚽ Sports</span></div>
+            <div class="pmprices"><span class="py">YES 31¢</span><span class="pbar"><span class="pbf" style="width:31%"></span></span><span class="pn">NO 69¢</span></div>
           </div>
-          <div class="match" style="margin-bottom:0">
-            <div class="mtop"><span class="lg">Basketball · National League</span><span class="sc">Q3 · 71–68</span></div>
-            <div class="teams"><span class="t">Capital Kings</span><span class="t">Coastal Waves</span></div>
-            <div class="odds" data-mkt="bball">
-              <div class="odd"><span class="ol">Home</span><span class="ov">1.85</span></div>
-              <div class="odd"><span class="ol">Spread</span><span class="ov">1.91</span></div>
-              <div class="odd"><span class="ol">Away</span><span class="ov">1.95</span></div>
-            </div>
+          <div class="pmrow" data-yes="62">
+            <div class="pmq"><span>Fed cuts rates by September</span><span class="cat">📈 Macro</span></div>
+            <div class="pmprices"><span class="py">YES 62¢</span><span class="pbar"><span class="pbf" style="width:62%"></span></span><span class="pn">NO 38¢</span></div>
+          </div>
+          <div class="pmrow" data-yes="44">
+            <div class="pmq"><span>Album of the Year favourite wins</span><span class="cat">🎬 Culture</span></div>
+            <div class="pmprices"><span class="py">YES 44¢</span><span class="pbar"><span class="pbf" style="width:44%"></span></span><span class="pn">NO 56¢</span></div>
           </div>
         </div>
 
-        <!-- FLOATING PLAYER PHONE -->
+        <!-- FLOATING POSITION PHONE -->
         <div class="phone phone-float">
           <div class="notch"></div>
           <div class="pcard">
-            <div class="ph"><span>Bet Slip · SGP</span><span class="l">3 LEGS</span></div>
-            <div class="pteam"><span>North City Win</span><span>2.10</span></div>
-            <div class="pteam"><span>Over 2.5 Goals</span><span>1.80</span></div>
-            <div class="pteam"><span>Kings -4.5</span><span>1.91</span></div>
-            <div class="podds" style="grid-template-columns:1fr"><div class="po sel" style="font-size:16px">7.22 ×</div></div>
+            <div class="ph"><span>Your Position</span><span class="l">OPEN</span></div>
+            <div class="pteam"><span>Spain YES · 200 @ 28¢</span><span>31¢</span></div>
+            <div class="pteam"><span>Unrealised P/L</span><span style="color:var(--cyan)">+$6.00</span></div>
+            <div class="podds" style="grid-template-columns:1fr"><div class="po sel" style="font-size:14px">Sell at 31¢</div></div>
           </div>
-          <div class="swipehint">Tap odds to build →</div>
+          <div class="swipehint">Price is probability →</div>
         </div>
       </div>
     </div>
@@ -550,10 +557,10 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <!-- HERO STAT STRIP -->
   <div class="statstrip">
     <div class="wrap">
-      <div class="stat sr"><div class="sv"><em>30+</em></div><div class="sl">Sports &amp; Markets</div></div>
-      <div class="stat sr"><div class="sv">Sub-<em>second</em></div><div class="sl">Live Odds Refresh</div></div>
-      <div class="stat sr"><div class="sv"><em>AI</em>-Native</div><div class="sl">Built In, Not Bolted On</div></div>
-      <div class="stat sr"><div class="sv"><em>Proven</em></div><div class="sl">Live Real-Money Production</div></div>
+      <div class="stat sr"><div class="sv">$<em>24B</em>+</div><div class="sl">Monthly Market Volume</div></div>
+      <div class="stat sr"><div class="sv"><em>80</em>%</div><div class="sl">Volume Now Sports-Led</div></div>
+      <div class="stat sr"><div class="sv">Yes<em>/</em>No</div><div class="sl">Price Is the Probability</div></div>
+      <div class="stat sr"><div class="sv"><em>3</em></div><div class="sl">Real Routes to Market</div></div>
     </div>
   </div>
 </header>
@@ -561,155 +568,90 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 <!-- OVERVIEW (centered intro) -->
 <section id="overview" class="block nopad">
   <div class="centered" style="padding-top:70px">
-    <div class="eyebrow sr" style="text-align:center">The Platform</div>
-    <h2 class="sr">A proven book.<br>Rebuilt around <em>intelligence.</em></h2>
-    <p class="sub sr">Not a new platform hoping to prove itself, and not an old one patched to look modern. A complete ground-up rebuild on the foundation of a real-money book proven in live production — now with AI as the infrastructure underneath everything, not a feature stapled to the front end.</p>
+    <div class="eyebrow sr" style="text-align:center">The Shift</div>
+    <h2 class="sr">From election novelty<br>to betting's <em>parallel market.</em></h2>
+    <p class="sub sr">In eighteen months, event contracts went from a regulatory curiosity to a market trading around $24&nbsp;billion a month — with sports, not politics, driving it. The exchanges hold federal designations, the NYSE's parent company has put $2&nbsp;billion behind Polymarket, and sportsbooks are answering in kind: DraftKings bought an exchange, FanDuel partnered with CME. This isn't adjacent to betting anymore. It's converging with it.</p>
   </div>
 </section>
 
-<!-- ODDS & PRICING (full-bleed horizontal strip) -->
-<section id="odds" class="fullbleed tintc">
+<!-- THE PRODUCT (full-bleed market card strip) -->
+<section id="market" class="fullbleed tintc">
   <div class="fb-head">
-    <div class="sr"><div class="eyebrow">Odds</div>
-    <h2>Your prices. Your <em>margin.</em></h2>
-    <p>Pre-match and in-play odds across 30+ sports, with your own overrounds, ladders and supremacies set per fixture and market — layered over the data feed you choose, so your lines aren't the same as every other operator on a shared vendor book.</p></div>
+    <div class="sr"><div class="eyebrow">The Product</div>
+    <h2>Yes or no. Priced in <em>cents.</em></h2>
+    <p>Every market is a binary contract: buy YES or NO between 1¢ and 99¢, where the price is the probability. There's no overround to manage — the exchange takes a fee and the crowd makes the price. It plays like betting on the surface and clears like a derivative underneath, and the same instrument covers sports, macro, politics and culture alike.</p></div>
   </div>
   <div class="strip sr">
-    <div class="scard"><div class="stag">⚽ Soccer · Live</div><div class="smk"><span class="sn">North City Win</span><span class="sodd">2.10</span></div><div class="smk"><span class="sn">Draw</span><span class="sodd">3.25</span></div><div class="smk"><span class="sn">Over 2.5</span><span class="sodd">1.80</span></div></div>
-    <div class="scard"><div class="stag">🏀 Basketball</div><div class="smk"><span class="sn">Capital Kings</span><span class="sodd">1.85</span></div><div class="smk"><span class="sn">Spread −4.5</span><span class="sodd">1.91</span></div><div class="smk"><span class="sn">Total O 214.5</span><span class="sodd">1.90</span></div></div>
-    <div class="scard"><div class="stag">🎾 Tennis · ATP</div><div class="smk"><span class="sn">A. Moreau</span><span class="sodd">1.72</span></div><div class="smk"><span class="sn">R. Castellanos</span><span class="sodd">2.15</span></div><div class="smk"><span class="sn">Next set</span><span class="sodd">1.90</span></div></div>
-    <div class="scard"><div class="stag">🏏 Cricket · T20</div><div class="smk"><span class="sn">Eastern Eagles</span><span class="sodd">1.62</span></div><div class="smk"><span class="sn">Royal Lions</span><span class="sodd">2.35</span></div><div class="smk"><span class="sn">Top batter</span><span class="sodd">4.50</span></div></div>
-    <div class="scard"><div class="stag">🎮 Esports · CS</div><div class="smk"><span class="sn">Team Vortex</span><span class="sodd">1.55</span></div><div class="smk"><span class="sn">Team Onyx</span><span class="sodd">2.50</span></div><div class="smk"><span class="sn">Map 2</span><span class="sodd">1.88</span></div></div>
-    <div class="scard"><div class="stag">🏒 Hockey</div><div class="smk"><span class="sn">Northern Frost</span><span class="sodd">2.05</span></div><div class="smk"><span class="sn">Bay Hawks</span><span class="sodd">1.80</span></div><div class="smk"><span class="sn">Both score</span><span class="sodd">1.66</span></div></div>
+    <div class="scard"><div class="stag">⚽ World Cup · Winner</div><div class="smk"><span class="sn">Spain</span><span class="sodd">31¢</span></div><div class="smk"><span class="sn">France</span><span class="sodd">19¢</span></div><div class="smk"><span class="sn">England</span><span class="sodd">14¢</span></div></div>
+    <div class="scard"><div class="stag">🏈 Football · Season</div><div class="smk"><span class="sn">Top seed clinches</span><span class="sodd">57¢</span></div><div class="smk"><span class="sn">Repeat champion</span><span class="sodd">22¢</span></div><div class="smk"><span class="sn">15-win season</span><span class="sodd">38¢</span></div></div>
+    <div class="scard"><div class="stag">📈 Macro · Rates</div><div class="smk"><span class="sn">Cut by September</span><span class="sodd">62¢</span></div><div class="smk"><span class="sn">Two cuts in 2026</span><span class="sodd">34¢</span></div><div class="smk"><span class="sn">Hold all year</span><span class="sodd">11¢</span></div></div>
+    <div class="scard"><div class="stag">🗳 Politics · Midterms</div><div class="smk"><span class="sn">House flips</span><span class="sodd">48¢</span></div><div class="smk"><span class="sn">Senate holds</span><span class="sodd">66¢</span></div><div class="smk"><span class="sn">Split congress</span><span class="sodd">41¢</span></div></div>
+    <div class="scard"><div class="stag">🎬 Culture · Awards</div><div class="smk"><span class="sn">Favourite wins</span><span class="sodd">44¢</span></div><div class="smk"><span class="sn">Upset winner</span><span class="sodd">18¢</span></div><div class="smk"><span class="sn">Record night</span><span class="sodd">27¢</span></div></div>
+    <div class="scard"><div class="stag">₿ Crypto · BTC</div><div class="smk"><span class="sn">New high in 2026</span><span class="sodd">53¢</span></div><div class="smk"><span class="sn">Above $100k EOY</span><span class="sodd">71¢</span></div><div class="smk"><span class="sn">ETF inflow record</span><span class="sodd">36¢</span></div></div>
   </div>
 </section>
 
-<!-- TRADING (off-ratio, visual dominant) -->
-<section id="trading" class="block tight">
+<!-- ROUTES TO MARKET (off-ratio, visual dominant) -->
+<section id="routes" class="block tight">
   <div class="wrap">
     <div class="offrow">
       <div class="big-vis vis sr" style="min-height:340px">
-        <span class="vlabel">Trading &amp; risk console</span>
+        <span class="vlabel">Route comparison</span>
         <div class="vpad" style="padding-top:42px">
           <div class="dash">
             <div class="panel">
-              <h5>Market movement</h5>
-              <div class="bar"><span class="bl">Soccer</span><span class="bt"><span class="bf" style="width:78%"></span></span><span class="bv">+2.4</span></div>
-              <div class="bar"><span class="bl">Bball</span><span class="bt"><span class="bf" style="width:54%"></span></span><span class="bv">−1.1</span></div>
-              <div class="bar"><span class="bl">Tennis</span><span class="bt"><span class="bf" style="width:66%"></span></span><span class="bv">+0.8</span></div>
-              <div class="bar"><span class="bl">Cricket</span><span class="bt"><span class="bf" style="width:40%"></span></span><span class="bv">−0.5</span></div>
-              <div class="bar" style="margin-bottom:0"><span class="bl">Esports</span><span class="bt"><span class="bf" style="width:72%"></span></span><span class="bv">+1.6</span></div>
+              <h5>Distribute — broker into an exchange</h5>
+              <div class="e"><span>Time to market</span><b>Weeks</b></div>
+              <div class="e"><span>Margin</span><b>Thin</b></div>
+              <div class="e"><span>Licence burden</span><span style="color:var(--cyan)">Lowest</span></div>
             </div>
             <div class="panel">
-              <h5>Book exposure</h5>
-              <div class="expo">
-                <div class="e"><span>Open liability</span><b>£182k</b></div>
-                <div class="e"><span>Max event</span><b>£44k</b></div>
-                <div class="e"><span>Hold target</span><b>7.2%</b></div>
-              </div>
-              <div class="gauge"><span class="gf"></span></div>
-              <div class="e" style="margin-top:8px"><span>Balance</span><span style="color:var(--cyan)">Within limit</span></div>
-              <h5 style="margin-top:16px">SGP correlation</h5>
-              <div class="e"><span>Legs priced</span><span style="color:var(--cyan)">Auto</span></div>
-              <div class="e"><span>Blocked combos</span><b>12</b></div>
+              <h5>Embed — white-label / API module</h5>
+              <div class="e"><span>Time to market</span><b>Months</b></div>
+              <div class="e"><span>Margin</span><b>Shared</b></div>
+              <div class="e"><span>Liquidity</span><span style="color:var(--cyan)">Provided</span></div>
+              <h5 style="margin-top:16px">Own — build or buy the exchange</h5>
+              <div class="e"><span>Margin</span><b>Full</b></div>
+              <div class="e"><span>Regulatory weight</span><span style="color:var(--mag)">Full</span></div>
             </div>
           </div>
         </div>
       </div>
       <div class="cap sr">
-        <div class="eyebrow">Trading</div>
-        <h2>Trading that protects <em>your hold.</em></h2>
-        <p>The capability operators struggle most to buy off-the-shelf — because the best books keep it in-house. Automation and human traders as one system: dynamic odds and limits, full-audit overrides, and correlation-aware SGP pricing that blocks the legs that leak money.</p>
+        <div class="eyebrow">Routes to Market</div>
+        <h2>Three ways in. Three different <em>businesses.</em></h2>
+        <p>Distribute means brokering access into an existing exchange — the fastest route live, and the thinnest cut. Embed means a white-label or API module such as Matchbook Predictions or Shift Markets running inside your wallet and KYC: your brand, provided liquidity, no trading desk. Own means acquiring or building the exchange itself — the DraftKings–Railbird and Robinhood–MIAXdx play: full margin, full regulatory weight. Which fits is a licensing, capital and cannibalisation question — not a product one.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RISK (centered with inline callouts) -->
-<section id="risk" class="block nopad">
+<!-- REGULATION (centered with inline callouts) -->
+<section id="regulation" class="block nopad">
   <div class="centered">
-    <div class="eyebrow sr" style="text-align:center">Risk Management</div>
-    <h2 class="sr">Protect the book.<br>Keep the <em>players.</em></h2>
-    <p class="sub sr">The off-the-shelf trap is throttling profitable players straight into a competitor's app. This is tuned for the opposite — limits land where the money's leaking, not on the recreational base that funds the business.</p>
+    <div class="eyebrow sr" style="text-align:center">Regulation</div>
+    <h2 class="sr">Financial rails or gaming rails.<br>The <em>gating</em> decision.</h2>
+    <p class="sub sr">In the US, event contracts trade on federally designated contract markets — rails several states are contesting in court. In Europe, Gibraltar updated its Gambling Act and licensed the first prediction market under a gaming framework. Same product, two legal theories. Your jurisdiction strategy decides which one applies to you.</p>
     <div class="callrow">
-      <div class="call sr"><div class="ci">⚡</div><h4>Real-Time Exposure</h4><p>Liability across every market and outcome, with dynamic limits that stop one event sinking the book.</p></div>
-      <div class="call sr"><div class="ci">◎</div><h4>Sharp Detection</h4><p>Behaviour models separate the costly action from the base — so limits land where they should.</p></div>
-      <div class="call sr"><div class="ci">⛨</div><h4>Integrity Built In</h4><p>Velocity limits, suspicious-betting queues and monitoring aligned to your leagues and regulators.</p></div>
+      <div class="call sr"><div class="ci">⚖</div><h4>Federal Rails — US</h4><p>CFTC-designated contract markets and clearing organisations, with federal jurisdiction asserted over state gambling law — and state challenges still live.</p></div>
+      <div class="call sr"><div class="ci">🌍</div><h4>Gaming Rails — International</h4><p>Gibraltar licensed Europe's first prediction market under its gaming framework; other <span class="ig">i</span>Gaming jurisdictions can host event betting under existing licences.</p></div>
+      <div class="call sr"><div class="ci">⛨</div><h4>Operator Exposure</h4><p>Where your licence sits determines what you can offer, to whom — and what a misstep in one market risks for the rest of your book.</p></div>
     </div>
   </div>
 </section>
 
-<!-- LIVE / IN-PLAY (off-ratio flipped, phone scene dominant) -->
-<section id="live" class="block tight">
-  <div class="wrap">
-    <div class="offrow cap-left">
-      <div class="cap sr">
-        <div class="eyebrow">Live / In-Play</div>
-        <h2>Real-time betting that <em>holds up.</em></h2>
-        <p>Odds that refresh in real time as the game moves, one-tap cash-out priced off the live model, and a live engine that runs isolated — so a marquee fixture at peak load scales on its own without slowing the rest of the book.</p>
-      </div>
-
-      <div class="livescene sr">
-        <span class="vlabel">In-play engine</span>
-
-        <!-- anchored phone, overlapping bottom edge -->
-        <div class="phone lphone">
-          <div class="notch"></div>
-          <div class="pcard">
-            <div class="ph"><span>Soccer · In-Play</span><span class="l">● LIVE 67'</span></div>
-            <div class="pteam"><span>North City FC</span><span>1</span></div>
-            <div class="pteam"><span>Harbour United</span><span>1</span></div>
-            <div class="podds"><div class="po sel">2.10</div><div class="po">3.25</div><div class="po">3.40</div></div>
-          </div>
-          <div class="pcard">
-            <div class="ph"><span>Next Goal</span><span class="l">● LIVE</span></div>
-            <div class="podds"><div class="po">1.95</div><div class="po">No goal 2.40</div></div>
-          </div>
-          <div class="pcard" style="margin-bottom:0">
-            <div class="ph"><span>Cash out</span><span class="l" style="color:var(--cyan)">+£18.40</span></div>
-            <div class="podds" style="grid-template-columns:1fr"><div class="po sel" style="font-size:14px">Cash out now</div></div>
-          </div>
-        </div>
-
-        <!-- floating live odds-tick toast -->
-        <div class="float-toast toast-tick">
-          <div class="ft-h"><span class="dl"></span> Odds moving</div>
-          <div class="ft-row"><span>North City</span><span class="up">2.10 ▲</span></div>
-          <div class="ft-row"><span>Draw</span><span class="dn">3.25 ▼</span></div>
-          <div class="ft-row"><span>Harbour</span><span class="up">3.40 ▲</span></div>
-        </div>
-
-        <!-- floating game-flow / momentum toast (echoes the Discover screen) -->
-        <div class="float-toast toast-flow">
-          <div class="ft-h">Game flow · 67'</div>
-          <div class="ft-row"><span>Momentum</span><span class="up">62%</span></div>
-          <div class="spark"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:60%"></i><i style="height:72%"></i><i style="height:85%"></i><i style="height:100%"></i></div>
-        </div>
-
-        <!-- floating cash-out confirmation toast -->
-        <div class="float-toast toast-cash">
-          <div class="ft-h" style="color:var(--cyan)">✓ Cashed out</div>
-          <div class="ft-row"><span>Returned</span><span class="up">£68.40</span></div>
-          <div class="ft-row"><span>Profit</span><span class="up">+£18.40</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- SPORTS DATA FEEDS (big-statement band, network cityscape) -->
-<section id="data" class="bigband">
+<!-- ZEFR'S ROLE (big-statement band) -->
+<section id="zefr" class="bigband">
   <div class="wrap">
     <div class="sr">
-      <div class="eyebrow">Sports Data Feeds</div>
-      <h1 class="huge">Feed-agnostic.<br>Intelligence <em>on top.</em></h1>
-      <p class="sub">Integrate the data partner that fits each market, then layer your own pricing, models and AI signals over it — so your lines, your live markets and your settlement run on data you control, not a vendor's locked default.</p>
+      <div class="eyebrow">Where Zefr Comes In</div>
+      <h1 class="huge">Thirty years pricing risk.<br>Applied to a <em>new market.</em></h1>
+      <p class="sub">We've made markets, run books and answered to regulators since 1995. Prediction markets change the instrument, not the discipline — probability, liquidity, limits and licensing are still the job.</p>
     </div>
     <div class="panels sr">
-      <div class="bp"><h4>Multi-Feed <em>Integration</em></h4><p>Connect best-fit pre-match, in-play and results providers per sport and per market, with failover between sources.</p></div>
-      <div class="bp"><h4>Your Pricing <em>Layer</em></h4><p>Overrounds, ladders and supremacies applied on top of raw feed data — and AI line-movement signals wired in at the data layer, not bolted on.</p></div>
-      <div class="bp"><h4>Settlement <em>Source of Truth</em></h4><p>Official results ingested and matched to open markets, driving fast, exact, fully-auditable grading end to end.</p></div>
+      <div class="bp"><h4>Entry <em>Assessment</em></h4><p>Complement or cannibalise — modelling what event markets do to your existing handle, hold and player base before you commit to a route.</p></div>
+      <div class="bp"><h4>Product &amp; <em>Liquidity Design</em></h4><p>Market selection, settlement sources, and whether you run provided liquidity, straight-through processing or your own risk book.</p></div>
+      <div class="bp"><h4>Licensing <em>Pathway</em></h4><p>Distribute, embed or own — matched to your jurisdictions, capital and appetite, with the regulatory sequence to get there.</p></div>
     </div>
   </div>
 </section>
@@ -730,8 +672,8 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 <!-- CTA -->
 <section class="ctaband">
   <img class="bgimg" src="https://vid.cdn-website.com/27af0057/videos/iStock-1523247662-v.mp4" alt="" onerror="this.style.display='none'">
-  <h2 class="display">Build your book on a<br>proven engine.</h2>
-  <p>Talk to a team that built and ran a real-money sportsbook — and rebuilt it, AI-native, from the ground up.</p>
+  <h2 class="display">Enter the market with<br>an operator beside you.</h2>
+  <p>Talk to a team that has priced risk for thirty years — before you commit to a route.</p>
   <a class="pill lg" href="contact.html">Start a Project</a>
 </section>
 
@@ -764,24 +706,25 @@ const secs=chips.map(c=>document.querySelector(c.getAttribute('href')));
 const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
   const id='#'+e.target.id;chips.forEach(c=>c.classList.toggle('on',c.getAttribute('href')===id));}}),{rootMargin:'-45% 0px -50% 0px'});
 secs.forEach(s=>s&&so.observe(s));
-// live odds board — tick values to feel alive
+// signature element — probability market board
 (function(){
-  var ovs=[...document.querySelectorAll('#board .odd')];
-  function jitter(){
-    var cell=ovs[Math.floor(Math.random()*ovs.length)];
-    var el=cell.querySelector('.ov');
-    var cur=parseFloat(el.textContent); if(isNaN(cur))return;
-    var delta=(Math.random()*0.12-0.06);
-    var next=Math.max(1.05,cur+delta);
-    var up=next>cur;
-    el.textContent=next.toFixed(2);
-    cell.classList.remove('up','down');void cell.offsetWidth;
-    cell.classList.add(up?'up':'down');
+  var rows=[...document.querySelectorAll('#pmboard .pmrow')];
+  function tick(){
+    var row=rows[Math.floor(Math.random()*rows.length)];
+    var yes=parseInt(row.dataset.yes,10);
+    var delta=Math.round(Math.random()*4-2); if(delta===0)delta=Math.random()<.5?-1:1;
+    var next=Math.min(97,Math.max(3,yes+delta));
+    row.dataset.yes=next;
+    row.querySelector('.py').textContent='YES '+next+'\u00A2';
+    row.querySelector('.pn').textContent='NO '+(100-next)+'\u00A2';
+    row.querySelector('.pbf').style.width=next+'%';
+    row.classList.remove('up','down');void row.offsetWidth;
+    row.classList.add(next>yes?'up':'down');
   }
-  setInterval(jitter,1400);
-  // match clock
-  var clk=document.getElementById('bclock'),m=67,s=12;
-  if(clk)setInterval(function(){s++;if(s>59){s=0;m++}clk.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;},1000);
+  setInterval(tick,1600);
+  // 24h volume ticker
+  var vol=document.getElementById('pmvol'),v=1.82;
+  if(vol)setInterval(function(){v+=0.01+Math.random()*0.02;vol.textContent='24h Vol $'+v.toFixed(2)+'B';},2600);
 })();
 </script>
 <script>
