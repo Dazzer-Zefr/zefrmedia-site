@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prediction Markets | Zefr Media</title><meta name="description" content="Operator-led prediction markets consulting — entry assessment, product and liquidity design, and licensing pathways for event contracts.">
+<title>Prediction Markets | Zefr Media</title><meta name="description" content="Sports event contracts, built with operator discipline — exchange odds, market-making, risk, live in-play contracts and settlement data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -495,10 +495,11 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="wrap">
     <span class="pillarname">Prediction Markets</span>
     <a class="chip on" href="#overview">Overview</a>
-    <a class="chip" href="#market">The Product</a>
-    <a class="chip" href="#routes">Routes In</a>
-    <a class="chip" href="#regulation">Regulation</a>
-    <a class="chip" href="#zefr">Zefr's Role</a>
+    <a class="chip" href="#odds">Odds</a>
+    <a class="chip" href="#trading">Trading</a>
+    <a class="chip" href="#risk">Risk</a>
+    <a class="chip" href="#live">Live / In-Play</a>
+    <a class="chip" href="#data">Sports Data Feeds</a>
   </div>
 </div>
 
@@ -508,7 +509,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
     <div class="grid">
       <div>
         <h1>Prediction markets,<br>without the <em>guesswork.</em></h1>
-        <p class="lede">Event contracts went from novelty to roughly $24&nbsp;billion a month in under two years — and sports now drives most of the volume. Whether you distribute, embed or build your own, entering is an operator decision: pricing, liquidity, licensing and what it does to your book.</p>
+        <p class="lede">Sports event contracts are the fastest-growing product in betting — roughly 80% of volume on the leading exchange, with the World Cup alone driving billions. Same games as your book, traded as Yes/No contracts. Built and priced with an operator's discipline.</p>
         <div class="herocta">
           <a class="pill lg" href="contact.html">Start Your Prediction Markets Project</a>
         </div>
@@ -526,15 +527,15 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
             <span class="volt" id="pmvol">24h Vol $1.82B</span>
           </div>
           <div class="pmrow" data-yes="31">
-            <div class="pmq"><span>Spain to win the World Cup</span><span class="cat">⚽ Sports</span></div>
+            <div class="pmq"><span>Spain to win the World Cup</span><span class="cat">⚽ Futures</span></div>
             <div class="pmprices"><span class="py">YES 31¢</span><span class="pbar"><span class="pbf" style="width:31%"></span></span><span class="pn">NO 69¢</span></div>
           </div>
-          <div class="pmrow" data-yes="62">
-            <div class="pmq"><span>Fed cuts rates by September</span><span class="cat">📈 Macro</span></div>
-            <div class="pmprices"><span class="py">YES 62¢</span><span class="pbar"><span class="pbf" style="width:62%"></span></span><span class="pn">NO 38¢</span></div>
+          <div class="pmrow" data-yes="57">
+            <div class="pmq"><span>North City clinch top seed</span><span class="cat">⚽ Season</span></div>
+            <div class="pmprices"><span class="py">YES 57¢</span><span class="pbar"><span class="pbf" style="width:57%"></span></span><span class="pn">NO 43¢</span></div>
           </div>
           <div class="pmrow" data-yes="44">
-            <div class="pmq"><span>Album of the Year favourite wins</span><span class="cat">🎬 Culture</span></div>
+            <div class="pmq"><span>Finals series goes the distance</span><span class="cat">🏀 Series</span></div>
             <div class="pmprices"><span class="py">YES 44¢</span><span class="pbar"><span class="pbf" style="width:44%"></span></span><span class="pn">NO 56¢</span></div>
           </div>
         </div>
@@ -558,9 +559,9 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="statstrip">
     <div class="wrap">
       <div class="stat sr"><div class="sv">$<em>24B</em>+</div><div class="sl">Monthly Market Volume</div></div>
-      <div class="stat sr"><div class="sv"><em>80</em>%</div><div class="sl">Volume Now Sports-Led</div></div>
+      <div class="stat sr"><div class="sv"><em>80</em>%</div><div class="sl">Of Volume Is Sports</div></div>
       <div class="stat sr"><div class="sv">Yes<em>/</em>No</div><div class="sl">Price Is the Probability</div></div>
-      <div class="stat sr"><div class="sv"><em>3</em></div><div class="sl">Real Routes to Market</div></div>
+      <div class="stat sr"><div class="sv"><em>0</em>%</div><div class="sl">Overround — Fee-Based Margin</div></div>
     </div>
   </div>
 </header>
@@ -568,90 +569,149 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 <!-- OVERVIEW (centered intro) -->
 <section id="overview" class="block nopad">
   <div class="centered" style="padding-top:70px">
-    <div class="eyebrow sr" style="text-align:center">The Shift</div>
-    <h2 class="sr">From election novelty<br>to betting's <em>parallel market.</em></h2>
-    <p class="sub sr">In eighteen months, event contracts went from a regulatory curiosity to a market trading around $24&nbsp;billion a month — with sports, not politics, driving it. The exchanges hold federal designations, the NYSE's parent company has put $2&nbsp;billion behind Polymarket, and sportsbooks are answering in kind: DraftKings bought an exchange, FanDuel partnered with CME. This isn't adjacent to betting anymore. It's converging with it.</p>
+    <div class="eyebrow sr" style="text-align:center">The Product</div>
+    <h2 class="sr">The sportsbook's sibling.<br>Sport, traded as <em>contracts.</em></h2>
+    <p class="sub sr">Every market is a binary contract on a sporting outcome: buy YES or NO between 1¢ and 99¢, where the price is the probability. The same fixtures your book already prices — traded on an exchange instead of against a bookmaker. Sports now drives roughly 80% of volume on the leading exchange, DraftKings bought one, FanDuel partnered with CME. This is a betting product, and it takes a betting operator to run it well.</p>
   </div>
 </section>
 
-<!-- THE PRODUCT (full-bleed market card strip) -->
-<section id="market" class="fullbleed tintc">
+<!-- ODDS (full-bleed market card strip) -->
+<section id="odds" class="fullbleed tintc">
   <div class="fb-head">
-    <div class="sr"><div class="eyebrow">The Product</div>
-    <h2>Yes or no. Priced in <em>cents.</em></h2>
-    <p>Every market is a binary contract: buy YES or NO between 1¢ and 99¢, where the price is the probability. There's no overround to manage — the exchange takes a fee and the crowd makes the price. It plays like betting on the surface and clears like a derivative underneath, and the same instrument covers sports, macro, politics and culture alike.</p></div>
+    <div class="sr"><div class="eyebrow">Odds</div>
+    <h2>No overround. Your <em>fee.</em></h2>
+    <p>Exchange pricing inverts the book: the crowd makes the price, and your margin is the fee and the spread you set — not a baked-in overround. Cent prices read as probabilities on their face, which players trust and sharps arbitrage. Knowing where your own lines should sit against the market price is where thirty years of making odds pays for itself.</p></div>
   </div>
   <div class="strip sr">
     <div class="scard"><div class="stag">⚽ World Cup · Winner</div><div class="smk"><span class="sn">Spain</span><span class="sodd">31¢</span></div><div class="smk"><span class="sn">France</span><span class="sodd">19¢</span></div><div class="smk"><span class="sn">England</span><span class="sodd">14¢</span></div></div>
-    <div class="scard"><div class="stag">🏈 Football · Season</div><div class="smk"><span class="sn">Top seed clinches</span><span class="sodd">57¢</span></div><div class="smk"><span class="sn">Repeat champion</span><span class="sodd">22¢</span></div><div class="smk"><span class="sn">15-win season</span><span class="sodd">38¢</span></div></div>
-    <div class="scard"><div class="stag">📈 Macro · Rates</div><div class="smk"><span class="sn">Cut by September</span><span class="sodd">62¢</span></div><div class="smk"><span class="sn">Two cuts in 2026</span><span class="sodd">34¢</span></div><div class="smk"><span class="sn">Hold all year</span><span class="sodd">11¢</span></div></div>
-    <div class="scard"><div class="stag">🗳 Politics · Midterms</div><div class="smk"><span class="sn">House flips</span><span class="sodd">48¢</span></div><div class="smk"><span class="sn">Senate holds</span><span class="sodd">66¢</span></div><div class="smk"><span class="sn">Split congress</span><span class="sodd">41¢</span></div></div>
-    <div class="scard"><div class="stag">🎬 Culture · Awards</div><div class="smk"><span class="sn">Favourite wins</span><span class="sodd">44¢</span></div><div class="smk"><span class="sn">Upset winner</span><span class="sodd">18¢</span></div><div class="smk"><span class="sn">Record night</span><span class="sodd">27¢</span></div></div>
-    <div class="scard"><div class="stag">₿ Crypto · BTC</div><div class="smk"><span class="sn">New high in 2026</span><span class="sodd">53¢</span></div><div class="smk"><span class="sn">Above $100k EOY</span><span class="sodd">71¢</span></div><div class="smk"><span class="sn">ETF inflow record</span><span class="sodd">36¢</span></div></div>
+    <div class="scard"><div class="stag">⚽ Match · North City v Harbour</div><div class="smk"><span class="sn">North City win</span><span class="sodd">46¢</span></div><div class="smk"><span class="sn">Over 2.5 goals</span><span class="sodd">55¢</span></div><div class="smk"><span class="sn">Both score</span><span class="sodd">60¢</span></div></div>
+    <div class="scard"><div class="stag">🏀 Season · National League</div><div class="smk"><span class="sn">Kings top seed</span><span class="sodd">57¢</span></div><div class="smk"><span class="sn">60-win season</span><span class="sodd">24¢</span></div><div class="smk"><span class="sn">Repeat champion</span><span class="sodd">22¢</span></div></div>
+    <div class="scard"><div class="stag">🎾 Tennis · Grand Slam</div><div class="smk"><span class="sn">Moreau wins title</span><span class="sodd">28¢</span></div><div class="smk"><span class="sn">Final goes 5 sets</span><span class="sodd">37¢</span></div><div class="smk"><span class="sn">Seed 1 v 2 final</span><span class="sodd">19¢</span></div></div>
+    <div class="scard"><div class="stag">🏒 Hockey · Playoffs</div><div class="smk"><span class="sn">Frost make finals</span><span class="sodd">33¢</span></div><div class="smk"><span class="sn">Series sweep</span><span class="sodd">12¢</span></div><div class="smk"><span class="sn">Game 7 decider</span><span class="sodd">29¢</span></div></div>
+    <div class="scard"><div class="stag">🏏 Cricket · T20 Cup</div><div class="smk"><span class="sn">Eagles reach final</span><span class="sodd">41¢</span></div><div class="smk"><span class="sn">Century scored</span><span class="sodd">64¢</span></div><div class="smk"><span class="sn">Hosts lift cup</span><span class="sodd">26¢</span></div></div>
   </div>
 </section>
 
-<!-- ROUTES TO MARKET (off-ratio, visual dominant) -->
-<section id="routes" class="block tight">
+<!-- TRADING (off-ratio, visual dominant) -->
+<section id="trading" class="block tight">
   <div class="wrap">
     <div class="offrow">
       <div class="big-vis vis sr" style="min-height:340px">
-        <span class="vlabel">Route comparison</span>
+        <span class="vlabel">Market-making console</span>
         <div class="vpad" style="padding-top:42px">
           <div class="dash">
             <div class="panel">
-              <h5>Distribute — broker into an exchange</h5>
-              <div class="e"><span>Time to market</span><b>Weeks</b></div>
-              <div class="e"><span>Margin</span><b>Thin</b></div>
-              <div class="e"><span>Licence burden</span><span style="color:var(--cyan)">Lowest</span></div>
+              <h5>Order book · Spain YES</h5>
+              <div class="bar"><span class="bl">Bid 30¢</span><span class="bt"><span class="bf" style="width:72%"></span></span><span class="bv">8.4k</span></div>
+              <div class="bar"><span class="bl">Bid 29¢</span><span class="bt"><span class="bf" style="width:54%"></span></span><span class="bv">5.1k</span></div>
+              <div class="bar"><span class="bl">Ask 32¢</span><span class="bt"><span class="bf" style="width:60%"></span></span><span class="bv">6.2k</span></div>
+              <div class="bar" style="margin-bottom:0"><span class="bl">Ask 33¢</span><span class="bt"><span class="bf" style="width:38%"></span></span><span class="bv">3.3k</span></div>
             </div>
             <div class="panel">
-              <h5>Embed — white-label / API module</h5>
-              <div class="e"><span>Time to market</span><b>Months</b></div>
-              <div class="e"><span>Margin</span><b>Shared</b></div>
-              <div class="e"><span>Liquidity</span><span style="color:var(--cyan)">Provided</span></div>
-              <h5 style="margin-top:16px">Own — build or buy the exchange</h5>
-              <div class="e"><span>Margin</span><b>Full</b></div>
-              <div class="e"><span>Regulatory weight</span><span style="color:var(--mag)">Full</span></div>
+              <h5>Liquidity provision</h5>
+              <div class="expo">
+                <div class="e"><span>Markets seeded</span><b>214</b></div>
+                <div class="e"><span>Avg spread</span><b>2¢</b></div>
+                <div class="e"><span>Quote uptime</span><b>99.4%</b></div>
+              </div>
+              <div class="gauge"><span class="gf"></span></div>
+              <div class="e" style="margin-top:8px"><span>Inventory</span><span style="color:var(--cyan)">Balanced</span></div>
+              <h5 style="margin-top:16px">Flow routing</h5>
+              <div class="e"><span>Mode</span><span style="color:var(--cyan)">STP / hold</span></div>
+              <div class="e"><span>Hedged exposure</span><b>92%</b></div>
             </div>
           </div>
         </div>
       </div>
       <div class="cap sr">
-        <div class="eyebrow">Routes to Market</div>
-        <h2>Three ways in. Three different <em>businesses.</em></h2>
-        <p>Distribute means brokering access into an existing exchange — the fastest route live, and the thinnest cut. Embed means a white-label or API module such as Matchbook Predictions or Shift Markets running inside your wallet and KYC: your brand, provided liquidity, no trading desk. Own means acquiring or building the exchange itself — the DraftKings–Railbird and Robinhood–MIAXdx play: full margin, full regulatory weight. Which fits is a licensing, capital and cannibalisation question — not a product one.</p>
+        <div class="eyebrow">Trading</div>
+        <h2>Liquidity is the <em>product.</em></h2>
+        <p>An empty market is a dead market. Someone has to seed the book, quote both sides and keep spreads tight enough to trade — on every fixture, not just the marquee ones. That's market-making, and it's the same muscle as running a trading desk: knowing the true price, deciding what flow to keep and what to lay off, and keeping inventory balanced while the game moves.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REGULATION (centered with inline callouts) -->
-<section id="regulation" class="block nopad">
+<!-- RISK (centered with inline callouts) -->
+<section id="risk" class="block nopad">
   <div class="centered">
-    <div class="eyebrow sr" style="text-align:center">Regulation</div>
-    <h2 class="sr">Financial rails or gaming rails.<br>The <em>gating</em> decision.</h2>
-    <p class="sub sr">In the US, event contracts trade on federally designated contract markets — rails several states are contesting in court. In Europe, Gibraltar updated its Gambling Act and licensed the first prediction market under a gaming framework. Same product, two legal theories. Your jurisdiction strategy decides which one applies to you.</p>
+    <div class="eyebrow sr" style="text-align:center">Risk Management</div>
+    <h2 class="sr">Exchange risk is<br><em>different</em> risk.</h2>
+    <p class="sub sr">There's no book to balance when the crowd holds both sides — the risk moves to positions, integrity and settlement. The discipline is the same one that protects a sportsbook: know where the exposure is, catch the action that shouldn't be there, and grade without argument.</p>
     <div class="callrow">
-      <div class="call sr"><div class="ci">⚖</div><h4>Federal Rails — US</h4><p>CFTC-designated contract markets and clearing organisations, with federal jurisdiction asserted over state gambling law — and state challenges still live.</p></div>
-      <div class="call sr"><div class="ci">🌍</div><h4>Gaming Rails — International</h4><p>Gibraltar licensed Europe's first prediction market under its gaming framework; other <span class="ig">i</span>Gaming jurisdictions can host event betting under existing licences.</p></div>
-      <div class="call sr"><div class="ci">⛨</div><h4>Operator Exposure</h4><p>Where your licence sits determines what you can offer, to whom — and what a misstep in one market risks for the rest of your book.</p></div>
+      <div class="call sr"><div class="ci">⚡</div><h4>Position Limits</h4><p>Per-market and per-account caps that stop one trader cornering a thin sports market — sized to liquidity, not set-and-forget.</p></div>
+      <div class="call sr"><div class="ci">◎</div><h4>Integrity Monitoring</h4><p>Unusual volume and price moves flagged against fixture data — the same suspicious-betting discipline a book runs, applied to contracts.</p></div>
+      <div class="call sr"><div class="ci">⛨</div><h4>Settlement Certainty</h4><p>Contracts grade against defined official sources with a dispute path — because an argued settlement costs more than a losing market.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ZEFR'S ROLE (big-statement band) -->
-<section id="zefr" class="bigband">
+<!-- LIVE / IN-PLAY (off-ratio flipped, phone scene dominant) -->
+<section id="live" class="block tight">
+  <div class="wrap">
+    <div class="offrow cap-left">
+      <div class="cap sr">
+        <div class="eyebrow">Live / In-Play</div>
+        <h2>Contracts that trade <em>with the game.</em></h2>
+        <p>In-play is where event contracts feel most like betting: the price is the live win probability, moving with every goal, break and momentum swing. Players can trade out mid-game the way they'd cash out a bet — and the engine has to reprice, match and settle at game speed without seizing up at peak load.</p>
+      </div>
+
+      <div class="livescene sr">
+        <span class="vlabel">Live contract</span>
+
+        <div class="phone lphone">
+          <div class="notch"></div>
+          <div class="pcard">
+            <div class="ph"><span>Soccer · In-Play</span><span class="l">● LIVE 67'</span></div>
+            <div class="pteam"><span>North City to win</span><span>YES 46¢</span></div>
+            <div class="pteam"><span>Score 1 – 1</span><span>67:12</span></div>
+            <div class="podds"><div class="po sel">YES 46¢</div><div class="po">NO 54¢</div></div>
+          </div>
+          <div class="pcard">
+            <div class="ph"><span>Next goal before 80'</span><span class="l">● LIVE</span></div>
+            <div class="podds"><div class="po">YES 58¢</div><div class="po">NO 42¢</div></div>
+          </div>
+          <div class="pcard" style="margin-bottom:0">
+            <div class="ph"><span>Your position</span><span class="l" style="color:var(--cyan)">+$6.00</span></div>
+            <div class="podds" style="grid-template-columns:1fr"><div class="po sel" style="font-size:14px">Sell 200 @ 31¢</div></div>
+          </div>
+        </div>
+
+        <div class="float-toast toast-tick">
+          <div class="ft-h"><span class="dl"></span> Price moving</div>
+          <div class="ft-row"><span>North City YES</span><span class="up">46¢ ▲</span></div>
+          <div class="ft-row"><span>Draw contract</span><span class="dn">28¢ ▼</span></div>
+          <div class="ft-row"><span>Next goal YES</span><span class="up">58¢ ▲</span></div>
+        </div>
+
+        <div class="float-toast toast-flow">
+          <div class="ft-h">Game flow · 67'</div>
+          <div class="ft-row"><span>Win probability</span><span class="up">46%</span></div>
+          <div class="spark"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:60%"></i><i style="height:72%"></i><i style="height:85%"></i><i style="height:100%"></i></div>
+        </div>
+
+        <div class="float-toast toast-cash">
+          <div class="ft-h" style="color:var(--cyan)">✓ Position closed</div>
+          <div class="ft-row"><span>Sold 200 @ 31¢</span><span class="up">$62.00</span></div>
+          <div class="ft-row"><span>Profit</span><span class="up">+$6.00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPORTS DATA FEEDS (big-statement band) -->
+<section id="data" class="bigband">
   <div class="wrap">
     <div class="sr">
-      <div class="eyebrow">Where Zefr Comes In</div>
-      <h1 class="huge">Thirty years pricing risk.<br>Applied to a <em>new market.</em></h1>
-      <p class="sub">We've made markets, run books and answered to regulators since 1995. Prediction markets change the instrument, not the discipline — probability, liquidity, limits and licensing are still the job.</p>
+      <div class="eyebrow">Sports Data Feeds</div>
+      <h1 class="huge">Official data<br>settles the <em>market.</em></h1>
+      <p class="sub">A contract is only as good as its settlement source. Every market resolves against defined official data — ingested, matched to open contracts and graded fast, so payouts land while the final whistle still echoes and no settlement turns into a support queue.</p>
     </div>
     <div class="panels sr">
-      <div class="bp"><h4>Entry <em>Assessment</em></h4><p>Complement or cannibalise — modelling what event markets do to your existing handle, hold and player base before you commit to a route.</p></div>
-      <div class="bp"><h4>Product &amp; <em>Liquidity Design</em></h4><p>Market selection, settlement sources, and whether you run provided liquidity, straight-through processing or your own risk book.</p></div>
-      <div class="bp"><h4>Licensing <em>Pathway</em></h4><p>Distribute, embed or own — matched to your jurisdictions, capital and appetite, with the regulatory sequence to get there.</p></div>
+      <div class="bp"><h4>Defined <em>Settlement Sources</em></h4><p>Each market names its official source up front — league data, governing-body results — so grading is a lookup, not a judgement call.</p></div>
+      <div class="bp"><h4>Feed-Agnostic <em>Integration</em></h4><p>Best-fit pre-match, in-play and results providers per sport, with failover between sources — the same multi-feed discipline as the sportsbook.</p></div>
+      <div class="bp"><h4>Fast, Auditable <em>Grading</em></h4><p>Results matched to open contracts and settled end to end with a full audit trail — the record that answers a dispute before it starts.</p></div>
     </div>
   </div>
 </section>

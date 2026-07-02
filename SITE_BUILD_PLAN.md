@@ -18,7 +18,7 @@ Nav order: **PLATFORM · GAMING · BETTING · GROWTH · SERVICES · COMPANY · N
 | Company | About |
 | NORM.GAME | Splash (last in nav, never hero) |
 
-Sportsbook locked sections (reference): Odds · Trading · Risk · Live/In-Play · Sports Data Feeds.
+**BETTING pillar locked sections (BOTH pages — Darren's ruling, Session A):** Overview · Odds · Trading · Risk · Live/In-Play · Sports Data Feeds. Prediction Markets is sports event contracts ONLY — no regulation content (that's Compliance & Risk), no macro/politics/culture markets.
 Each new page's sections come from the spreadsheet — **read it, never guess**.
 
 ---
@@ -165,6 +165,8 @@ No file shuttling between chat and repo — the repo is the memory.
 - [ ] Homepage "What We Do" cards still carry old discipline names (Strategy Consulting / Design & Marketing / Technology & AI / iGaming) linking to new pillar pages — verified last session as-is; revisit if wanted
 
 ## SESSION A LOG (July 2026)
+
+- **REVISION (same session):** first prediction-markets build vetoed — invented sub-structure (The Product / Routes In / Regulation / Zefr's Role) replaced with the locked Betting spine: Overview · Odds · Trading · Risk · Live/In-Play · Sports Data Feeds. Regulation content removed (belongs to Compliance & Risk); all markets sports-only. Re-verified Playwright 1280+390, no errors, no overflow, board animating.
 
 - **File mix-up resolved:** the file uploaded as "sportsbook.html" was actually the verified lean-target homepage (title, six-section spine, in-play console). The real sportsbook was already in the repo, missing the JetBrains Mono import and brand-token `--line`.
 - **Performance pass done on index.html:** 2.2MB → 39.7KB. Extracted 3 base64 JPEGs → WebP (home-hero/home-cta/home-poster) and 1 embedded base64 MP4 (~1.2MB) → img/home-hero.mp4. Added missing NORM.GAME nav link (locked-structure violation).
