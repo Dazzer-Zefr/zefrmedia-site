@@ -76,12 +76,10 @@ nav.scrolled{background:rgba(8,6,15,.92);border-bottom-color:var(--line)}
 @keyframes float2{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(18px) rotate(-6deg)}}
 
 /* layered device cluster */
-.cluster{position:relative;min-height:440px}
-.cluster .board{position:absolute;right:0;top:0;width:400px;max-width:100%;z-index:3}
-.cluster .phone-float{position:absolute;left:2%;bottom:0;width:212px;z-index:4;
-  filter:drop-shadow(0 50px 90px rgba(138,43,226,.5))}
-@media(max-width:960px){.cluster{min-height:0;display:flex;flex-direction:column;align-items:center;gap:22px}
-  .cluster .board,.cluster .phone-float{position:static;width:300px;max-width:90vw}}
+.cluster{position:relative;display:flex;justify-content:flex-end}
+.cluster .board{width:472px;max-width:100%;z-index:3}
+@media(max-width:960px){.cluster{justify-content:center}
+  .cluster .board{width:100%;max-width:472px}}
 
 /* ALTERNATING SHOWCASE ROWS */
 .showrow{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:54px 0;position:relative}
@@ -461,20 +459,107 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
 /* mono data UI — JetBrains Mono for console/numeric readouts (site pattern) */
 .bclock,.ov,.sodd,.bv,.expo b,.ft-row span:last-child,.sc,.pv,.pteam span:last-child{font-family:'JetBrains Mono',monospace}
 
-/* ═ page signature: live probability market board ═ */
-.pmrow{padding:10px 0;border-bottom:1px solid var(--line)}
-.pmrow:last-child{border-bottom:0;padding-bottom:0}
-.pmq{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--white);font-weight:600}
-.pmq .cat{color:var(--muted);font-weight:500;white-space:nowrap}
-.pmprices{display:flex;align-items:center;gap:8px;margin-top:7px}
-.pmprices .py,.pmprices .pn{font-family:'JetBrains Mono',monospace;font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line);transition:.25s}
-.pmprices .py{color:var(--cyan);background:rgba(60,224,224,.08)}
-.pmprices .pn{color:var(--muted)}
-.pbar{flex:1;height:6px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden}
-.pbf{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--vio),var(--cyan));transition:width .5s ease}
-.pmrow.up .py{border-color:rgba(60,224,224,.55);box-shadow:0 0 14px -4px rgba(60,224,224,.6)}
-.pmrow.down .py{border-color:rgba(255,46,158,.55);box-shadow:0 0 14px -4px rgba(255,46,158,.5)}
+/* ═ page signature: exchange market terminal (Kalshi-class market screen) ═ */
 .volt{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:12px}
+.term-tabs{display:flex;align-items:center;gap:6px;padding:0 2px 12px;border-bottom:1px solid var(--line)}
+.ttab{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;color:var(--muted);
+  border:1px solid var(--line);border-radius:6px;padding:4px 8px;white-space:nowrap}
+.ttab.on{color:var(--ink);background:var(--cyan);border-color:transparent;font-weight:700}
+.term-tabs .live{margin-left:auto}
+.term-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:12px 2px 4px}
+.tq{font-size:14.5px;font-weight:700;color:var(--white);line-height:1.25}
+.tmeta{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.8px;color:var(--muted);margin-top:5px;text-transform:uppercase}
+.tlast{text-align:right;flex:0 0 auto}
+.tl-price{display:block;font-family:'JetBrains Mono',monospace;font-size:27px;font-weight:700;color:var(--cyan);line-height:1;transition:color .3s}
+.tl-chg{font-family:'JetBrains Mono',monospace;font-size:11px}
+.tl-chg.up{color:#5BE8B0}.tl-chg.dn{color:#FF6FB0}
+.pchart{display:block;width:100%;height:auto;margin-top:2px}
+.pc-grid{stroke:rgba(255,255,255,.08);stroke-width:1}
+.pc-glab{font-family:'JetBrains Mono',monospace;font-size:8.5px;fill:#7d739c}
+.pc-line{fill:none;stroke:var(--cyan);stroke-width:1.8;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(60,224,224,.45))}
+.pc-fill{fill:url(#pmgrad);stroke:none}
+.pc-lastline{stroke:var(--gold);stroke-width:1;stroke-dasharray:3 4;opacity:.8}
+.pc-dot{fill:var(--cyan)}
+.pc-pulse{fill:none;stroke:var(--cyan);stroke-width:1.2;animation:pcpulse 1.8s ease-out infinite}
+@keyframes pcpulse{0%{r:3px;opacity:.8}100%{r:10px;opacity:0}}
+.pc-tagbox{fill:var(--cyan);rx:3px}
+.pc-tagtxt{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;fill:var(--ink)}
+.taxis{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;
+  font-size:8.5px;color:#7d739c;padding:4px 2px 0;letter-spacing:.5px}
+.term-cols{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:12px}
+@media(max-width:430px){.term-cols{grid-template-columns:1fr}}
+.tpanel{background:#0e0a1c;border:1px solid var(--line);border-radius:10px;padding:10px 11px}
+.tpanel h5{font-size:8.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px;
+  display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace}
+.obk-h{display:grid;grid-template-columns:38px 48px 1fr;gap:7px;font-family:'JetBrains Mono',monospace;
+  font-size:8px;letter-spacing:.8px;color:#7d739c;text-transform:uppercase;padding-bottom:4px}
+.obk-h span:nth-child(2){text-align:right}
+.obk-r{display:grid;grid-template-columns:38px 48px 1fr;gap:7px;align-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:2.5px 0}
+.obk-r .pr{transition:.25s}.obk-r.ask .pr{color:var(--mag)}.obk-r.bid .pr{color:var(--cyan)}
+.obk-r .qy{color:var(--white);text-align:right}
+.obk-bar{height:10px;border-radius:3px;overflow:hidden;position:relative;background:rgba(255,255,255,.04)}
+.obk-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .6s ease}
+.obk-r.ask .obk-bar i{background:linear-gradient(90deg,rgba(255,46,158,.55),rgba(255,46,158,.12))}
+.obk-r.bid .obk-bar i{background:linear-gradient(90deg,rgba(60,224,224,.55),rgba(60,224,224,.12))}
+.obk-mid{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);
+  border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:4px 0;margin:4px 0;letter-spacing:.5px}
+.trd-r{display:grid;grid-template-columns:1fr 38px 44px;gap:6px;font-family:'JetBrains Mono',monospace;
+  font-size:10px;padding:3.5px 0;border-bottom:1px solid rgba(255,255,255,.05);align-items:center}
+.trd-r:last-child{border-bottom:0}
+.trd-r .t{color:#7d739c;font-size:9px}
+.trd-r .p{text-align:right}.trd-r .p.up{color:#5BE8B0}.trd-r .p.dn{color:#FF6FB0}
+.trd-r .q{color:var(--white);text-align:right}
+.trd-r.new{animation:trdin .6s}
+@keyframes trdin{0%{background:rgba(60,224,224,.18)}100%{background:transparent}}
+.term-pos{display:flex;align-items:center;gap:10px;margin-top:12px;padding:9px 12px;border-radius:10px;
+  background:rgba(255,46,158,.06);border:1px solid rgba(255,46,158,.25);
+  font-family:'JetBrains Mono',monospace;font-size:10px}
+.tp-lab{color:var(--gold);letter-spacing:1px;text-transform:uppercase;font-size:8.5px;font-weight:700}
+.tp-body{color:var(--white)}
+.tp-pl{color:var(--cyan);margin-left:auto}
+.tp-sell{background:var(--mag);color:#fff;font-weight:700;padding:4px 11px;border-radius:20px;font-size:9.5px;
+  letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+@media(max-width:430px){.term-pos{flex-wrap:wrap}.tp-pl{margin-left:0}}
+.term-foot{display:flex;justify-content:space-between;gap:10px;margin-top:12px;padding:10px 2px 2px;border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.7px;color:var(--muted);text-transform:uppercase}
+.term-foot b{color:var(--gold);font-weight:700;font-size:11.5px;display:block;margin-top:3px}
+
+/* = fee curve (Odds section) = */
+.feecurve{position:relative;max-width:520px;margin:26px 0 0;padding:18px 18px 14px;
+  border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(160deg,rgba(20,13,38,.85),rgba(11,8,22,.9))}
+.feecurve h5{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:700}
+.feecurve svg{display:block;width:100%;height:110px}
+.feecurve .axis{font-family:'JetBrains Mono',monospace;font-size:9.5px;fill:var(--muted)}
+.feecurve .peak{font-family:'JetBrains Mono',monospace;font-size:10.5px;fill:var(--gold)}
+
+/* = order-book depth ladder (Trading section) = */
+.oblad{padding:8px 4px}
+.obrow{display:grid;grid-template-columns:1fr 74px 1fr;align-items:center;gap:8px;padding:4px 0}
+.obrow .qty{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.obrow .qty.b{text-align:right}
+.obrow .prc{font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center;padding:3px 0;
+  border-radius:6px;border:1px solid var(--line)}
+.obrow.bid .prc{color:var(--cyan)}
+.obrow.ask .prc{color:var(--mag)}
+.obbar{position:relative;height:16px;border-radius:4px;overflow:hidden}
+.obbar i{position:absolute;top:0;bottom:0;border-radius:4px;transition:width .8s ease}
+.obrow.bid .obbar i{right:0;background:linear-gradient(270deg,rgba(60,224,224,.55),rgba(60,224,224,.12))}
+.obrow.ask .obbar i{left:0;background:linear-gradient(90deg,rgba(255,46,158,.55),rgba(255,46,158,.12))}
+.obmid{display:flex;justify-content:center;align-items:center;gap:10px;margin:8px 0;padding:7px 0;
+  border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold)}
+.obhead{display:grid;grid-template-columns:1fr 74px 1fr;font-size:9.5px;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--muted);padding:0 0 6px;font-family:'JetBrains Mono',monospace}
+.obhead span:first-child{text-align:right}
+.obhead span:nth-child(2){text-align:center}
+
+/* = win-probability chart (Live toast) = */
+.wpchart{display:block;width:100%;height:46px;margin-top:6px}
+.wpchart polyline{fill:none;stroke:var(--cyan);stroke-width:1.5;
+  filter:drop-shadow(0 0 5px rgba(60,224,224,.5))}
+.wpchart .goal{fill:var(--gold)}
 </style></head><body><nav id="nav">
   <a class="brand" href="index.html"><img src="logo-zm.png" alt="Zefr Media" class="brand-mark"><span class="wm"><span class="zefr">ZEFR</span> <span class="media">MEDIA</span></span></a>
   <button class="navburger" id="navburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -522,35 +607,65 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
         <span class="orb o3"></span>
 
         <div class="board" id="pmboard">
-          <div class="bhead">
-            <span class="live"><span class="dotlive"></span> Live Markets</span>
-            <span class="volt" id="pmvol">24h Vol $1.82B</span>
+          <div class="term-tabs">
+            <span class="ttab on">WC26-ESP</span>
+            <span class="ttab">NC-SEED</span>
+            <span class="ttab">FIN-G7</span>
+            <span class="live"><span class="dotlive"></span> LIVE</span>
           </div>
-          <div class="pmrow" data-yes="31">
-            <div class="pmq"><span>Spain to win the World Cup</span><span class="cat">⚽ Futures</span></div>
-            <div class="pmprices"><span class="py">YES 31¢</span><span class="pbar"><span class="pbf" style="width:31%"></span></span><span class="pn">NO 69¢</span></div>
+          <div class="term-head">
+            <div>
+              <div class="tq">Spain to win the World Cup</div>
+              <div class="tmeta">&#9917; Futures &middot; Settles Jul 19 &middot; Source: official result</div>
+            </div>
+            <div class="tlast">
+              <span class="tl-price" id="tlast">31&cent;</span>
+              <span class="tl-chg up" id="tchg">+1&cent; today</span>
+            </div>
           </div>
-          <div class="pmrow" data-yes="57">
-            <div class="pmq"><span>North City clinch top seed</span><span class="cat">⚽ Season</span></div>
-            <div class="pmprices"><span class="py">YES 57¢</span><span class="pbar"><span class="pbf" style="width:57%"></span></span><span class="pn">NO 43¢</span></div>
+          <svg class="pchart" viewBox="0 0 440 150" id="pchart" aria-label="Yes price, last four hours">
+            <defs><linearGradient id="pmgrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(60,224,224,.32)"/><stop offset="1" stop-color="rgba(60,224,224,0)"/>
+            </linearGradient></defs>
+            <g id="pcgrid"></g>
+            <polygon class="pc-fill" id="psfill" points=""></polygon>
+            <polyline class="pc-line" id="psline" points=""></polyline>
+            <line class="pc-lastline" id="pclastline" x1="0" x2="396" y1="0" y2="0"/>
+            <circle class="pc-pulse" id="pcpulse" r="3"/>
+            <circle class="pc-dot" id="pcdot" r="3"/>
+            <g id="pctag"><rect class="pc-tagbox" width="38" height="15"/><text class="pc-tagtxt" id="pctagtxt"></text></g>
+          </svg>
+          <div class="taxis" id="taxis"><span>&ndash;4H</span><span>&ndash;3H</span><span>&ndash;2H</span><span>&ndash;1H</span><span>NOW</span></div>
+          <div class="term-cols">
+            <div class="tpanel">
+              <h5><span>Order book</span><span>YES</span></h5>
+              <div class="obk-h"><span>Price</span><span>Qty</span><span></span></div>
+              <div class="obk-r ask"><span class="pr">34&cent;</span><span class="qy">9.6k</span><span class="obk-bar"><i style="width:64%"></i></span></div>
+              <div class="obk-r ask"><span class="pr">33&cent;</span><span class="qy">7.1k</span><span class="obk-bar"><i style="width:47%"></i></span></div>
+              <div class="obk-r ask"><span class="pr">32&cent;</span><span class="qy">6.2k</span><span class="obk-bar"><i style="width:41%"></i></span></div>
+              <div class="obk-mid"><span id="obklast">LAST 31&cent;</span><span id="obkspr">SPREAD 2&cent;</span></div>
+              <div class="obk-r bid"><span class="pr">30&cent;</span><span class="qy">8.4k</span><span class="obk-bar"><i style="width:56%"></i></span></div>
+              <div class="obk-r bid"><span class="pr">29&cent;</span><span class="qy">5.1k</span><span class="obk-bar"><i style="width:34%"></i></span></div>
+              <div class="obk-r bid"><span class="pr">28&cent;</span><span class="qy">15.0k</span><span class="obk-bar"><i style="width:100%"></i></span></div>
+            </div>
+            <div class="tpanel">
+              <h5><span>Trades</span><span>QTY</span></h5>
+              <div id="tape"></div>
+            </div>
           </div>
-          <div class="pmrow" data-yes="44">
-            <div class="pmq"><span>Finals series goes the distance</span><span class="cat">🏀 Series</span></div>
-            <div class="pmprices"><span class="py">YES 44¢</span><span class="pbar"><span class="pbf" style="width:44%"></span></span><span class="pn">NO 56¢</span></div>
+          <div class="term-pos">
+            <span class="tp-lab">Your position</span>
+            <span class="tp-body">Spain YES &middot; 200 @ 28&cent;</span>
+            <span class="tp-pl" id="phpl">+$6.00</span>
+            <span class="tp-sell" id="phsell">Sell at 31&cent;</span>
+          </div>
+          <div class="term-foot">
+            <span>24h Volume<b id="pmvol">$48.2M</b></span>
+            <span>Open Interest<b id="pmoi">12.4M</b></span>
+            <span>Session<b id="pshi">27&ndash;33&cent;</b></span>
           </div>
         </div>
 
-        <!-- FLOATING POSITION PHONE -->
-        <div class="phone phone-float">
-          <div class="notch"></div>
-          <div class="pcard">
-            <div class="ph"><span>Your Position</span><span class="l">OPEN</span></div>
-            <div class="pteam"><span>Spain YES · 200 @ 28¢</span><span>31¢</span></div>
-            <div class="pteam"><span>Unrealised P/L</span><span style="color:var(--cyan)">+$6.00</span></div>
-            <div class="podds" style="grid-template-columns:1fr"><div class="po sel" style="font-size:14px">Sell at 31¢</div></div>
-          </div>
-          <div class="swipehint">Price is probability →</div>
-        </div>
       </div>
     </div>
   </div>
@@ -571,7 +686,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="centered" style="padding-top:70px">
     <div class="eyebrow sr" style="text-align:center">The Product</div>
     <h2 class="sr">The sportsbook's sibling.<br>Sport, traded as <em>contracts.</em></h2>
-    <p class="sub sr">Every market is a binary contract on a sporting outcome: buy YES or NO between 1¢ and 99¢, where the price is the probability. The same fixtures your book already prices — traded on an exchange instead of against a bookmaker. Sports now drives roughly 80% of volume on the leading exchange, DraftKings bought one, FanDuel partnered with CME. This is a betting product, and it takes a betting operator to run it well.</p>
+    <p class="sub sr">Every market is a binary contract on a sporting outcome &mdash; buy YES or NO between 1&cent; and 99&cent;, where the price is the probability, and every contract settles at $1 or $0. Sports has driven roughly 80% of volume on the leading exchange since 2024, analysts project $5&ndash;10&nbsp;billion in trading on this World Cup alone, and the operators have noticed: DraftKings bought the Railbird exchange, FanDuel partnered with CME, and the NHL, MLB and MLS have licensed their trademarks into these markets. This is a betting product &mdash; and it takes a betting operator to run it well.</p>
   </div>
 </section>
 
@@ -580,7 +695,22 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="fb-head">
     <div class="sr"><div class="eyebrow">Odds</div>
     <h2>No overround. Your <em>fee.</em></h2>
-    <p>Exchange pricing inverts the book: the crowd makes the price, and your margin is the fee and the spread you set — not a baked-in overround. Cent prices read as probabilities on their face, which players trust and sharps arbitrage. Knowing where your own lines should sit against the market price is where thirty years of making odds pays for itself.</p></div>
+    <p>Exchange pricing inverts the book: the crowd makes the price and the venue earns a fee, not an overround. On the leading exchange that fee is 7% &times; p &times; (1&minus;p) per contract &mdash; peaking at just 1.75&cent; on a 50&cent; market, with market makers paying roughly 75% less. A structure built to reward whoever quotes the tightest price. Winning there isn't about baking in margin &mdash; it's knowing the true probability better than the crowd, which is what an odds-compiling desk has always done.</p>
+    <div class="feecurve sr">
+      <h5>Exchange taker fee &middot; 7% &times; p &times; (1&minus;p) per contract</h5>
+      <svg viewBox="0 0 480 110" preserveAspectRatio="none">
+        <line x1="30" y1="88" x2="470" y2="88" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+        <defs><linearGradient id="feegrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#3CE0E0"/><stop offset=".5" stop-color="#E8B84B"/><stop offset="1" stop-color="#FF2E9E"/>
+        </linearGradient></defs>
+        <path d="M 30 88 Q 250 -42 470 88" fill="none" stroke="url(#feegrad)" stroke-width="2.2"/>
+        <circle cx="250" cy="23" r="3.5" fill="#E8B84B"/>
+        <text class="peak" x="250" y="14" text-anchor="middle">1.75&cent; max &middot; 50&cent; market</text>
+        <text class="axis" x="30" y="102">1&cent;</text>
+        <text class="axis" x="250" y="102" text-anchor="middle">50&cent;</text>
+        <text class="axis" x="470" y="102" text-anchor="end">99&cent;</text>
+      </svg>
+    </div></div>
   </div>
   <div class="strip sr">
     <div class="scard"><div class="stag">⚽ World Cup · Winner</div><div class="smk"><span class="sn">Spain</span><span class="sodd">31¢</span></div><div class="smk"><span class="sn">France</span><span class="sodd">19¢</span></div><div class="smk"><span class="sn">England</span><span class="sodd">14¢</span></div></div>
@@ -597,36 +727,28 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="wrap">
     <div class="offrow">
       <div class="big-vis vis sr" style="min-height:340px">
-        <span class="vlabel">Market-making console</span>
+        <span class="vlabel">Order book &middot; Spain YES</span>
         <div class="vpad" style="padding-top:42px">
-          <div class="dash">
-            <div class="panel">
-              <h5>Order book · Spain YES</h5>
-              <div class="bar"><span class="bl">Bid 30¢</span><span class="bt"><span class="bf" style="width:72%"></span></span><span class="bv">8.4k</span></div>
-              <div class="bar"><span class="bl">Bid 29¢</span><span class="bt"><span class="bf" style="width:54%"></span></span><span class="bv">5.1k</span></div>
-              <div class="bar"><span class="bl">Ask 32¢</span><span class="bt"><span class="bf" style="width:60%"></span></span><span class="bv">6.2k</span></div>
-              <div class="bar" style="margin-bottom:0"><span class="bl">Ask 33¢</span><span class="bt"><span class="bf" style="width:38%"></span></span><span class="bv">3.3k</span></div>
-            </div>
-            <div class="panel">
-              <h5>Liquidity provision</h5>
-              <div class="expo">
-                <div class="e"><span>Markets seeded</span><b>214</b></div>
-                <div class="e"><span>Avg spread</span><b>2¢</b></div>
-                <div class="e"><span>Quote uptime</span><b>99.4%</b></div>
-              </div>
-              <div class="gauge"><span class="gf"></span></div>
-              <div class="e" style="margin-top:8px"><span>Inventory</span><span style="color:var(--cyan)">Balanced</span></div>
-              <h5 style="margin-top:16px">Flow routing</h5>
-              <div class="e"><span>Mode</span><span style="color:var(--cyan)">STP / hold</span></div>
-              <div class="e"><span>Hedged exposure</span><b>92%</b></div>
-            </div>
+          <div class="oblad" id="oblad">
+            <div class="obhead"><span>Ask size &middot; cumulative</span><span>Price</span><span></span></div>
+            <div class="obrow ask" data-q="9.6"><div class="qty b">9.6k</div><div class="prc">35&cent;</div><div class="obbar"><i style="width:34%"></i></div></div>
+            <div class="obrow ask" data-q="7.1"><div class="qty b">7.1k</div><div class="prc">34&cent;</div><div class="obbar"><i style="width:64%"></i></div></div>
+            <div class="obrow ask" data-q="3.3"><div class="qty b">3.3k</div><div class="prc">33&cent;</div><div class="obbar"><i style="width:34%"></i></div></div>
+            <div class="obrow ask" data-q="6.2"><div class="qty b">6.2k</div><div class="prc">32&cent;</div><div class="obbar"><i style="width:64%"></i></div></div>
+            <div class="obmid"><span>MID 31&cent;</span><span>&middot;</span><span>SPREAD 2&cent;</span></div>
+            <div class="obrow bid" data-q="8.4"><div class="obbar"><i style="width:86%"></i></div><div class="prc">30&cent;</div><div class="qty">8.4k</div></div>
+            <div class="obrow bid" data-q="5.1"><div class="obbar"><i style="width:52%"></i></div><div class="prc">29&cent;</div><div class="qty">5.1k</div></div>
+            <div class="obrow bid" data-q="4.0"><div class="obbar"><i style="width:41%"></i></div><div class="prc">28&cent;</div><div class="qty">4.0k</div></div>
+            <div class="obrow bid" data-q="7.7"><div class="obbar"><i style="width:70%"></i></div><div class="prc">27&cent;</div><div class="qty">7.7k</div></div>
+            <div class="obhead" style="padding:6px 0 0"><span></span><span>Price</span><span>Bid size &middot; cumulative</span></div>
+            <div class="obmid" style="border-bottom:0;margin-bottom:0"><span id="obaskd">ASK DEPTH 26.2K</span><span>&middot;</span><span id="obbidd">BID DEPTH 25.2K</span></div>
           </div>
         </div>
       </div>
       <div class="cap sr">
         <div class="eyebrow">Trading</div>
         <h2>Liquidity is the <em>product.</em></h2>
-        <p>An empty market is a dead market. Someone has to seed the book, quote both sides and keep spreads tight enough to trade — on every fixture, not just the marquee ones. That's market-making, and it's the same muscle as running a trading desk: knowing the true price, deciding what flow to keep and what to lay off, and keeping inventory balanced while the game moves.</p>
+        <p>Every trade on an exchange is a maker matched with a taker &mdash; and the maker side is where the operator lives. Resting orders create the liquidity; fee schedules reward them with roughly 75% lower rates. Seeding books on every fixture, quoting both sides, holding spreads to a cent or two, and deciding what flow to keep versus lay off is a trading desk's discipline. White-label providers sell &ldquo;no trading desk required&rdquo; &mdash; fine for a media brand. For an operator, the desk is the edge, and outsourcing it means outsourcing your margin.</p>
       </div>
     </div>
   </div>
@@ -637,11 +759,11 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
   <div class="centered">
     <div class="eyebrow sr" style="text-align:center">Risk Management</div>
     <h2 class="sr">Exchange risk is<br><em>different</em> risk.</h2>
-    <p class="sub sr">There's no book to balance when the crowd holds both sides — the risk moves to positions, integrity and settlement. The discipline is the same one that protects a sportsbook: know where the exposure is, catch the action that shouldn't be there, and grade without argument.</p>
+    <p class="sub sr">There's no book to balance when the crowd holds both sides &mdash; the risk moves to positions, integrity and settlement. The majors treat it that way: the leading exchange runs Sportradar's UFDS AI monitoring and shares threats through the Sportradar Integrity Exchange, the same surveillance stack the big sportsbooks sit on. The discipline that protects a book protects an exchange too &mdash; it just watches different numbers.</p>
     <div class="callrow">
-      <div class="call sr"><div class="ci">⚡</div><h4>Position Limits</h4><p>Per-market and per-account caps that stop one trader cornering a thin sports market — sized to liquidity, not set-and-forget.</p></div>
-      <div class="call sr"><div class="ci">◎</div><h4>Integrity Monitoring</h4><p>Unusual volume and price moves flagged against fixture data — the same suspicious-betting discipline a book runs, applied to contracts.</p></div>
-      <div class="call sr"><div class="ci">⛨</div><h4>Settlement Certainty</h4><p>Contracts grade against defined official sources with a dispute path — because an argued settlement costs more than a losing market.</p></div>
+      <div class="call sr"><div class="ci">&#9889;</div><h4>Position Limits</h4><p>Per-market and per-account caps sized to actual liquidity &mdash; so no one corners a thin market on a Tuesday-night fixture and settles it in court.</p></div>
+      <div class="call sr"><div class="ci">&#9678;</div><h4>Integrity Monitoring</h4><p>Volume and price anomalies flagged against live fixture data &mdash; AI surveillance of the UFDS class, wired to the same suspicious-activity discipline a book runs.</p></div>
+      <div class="call sr"><div class="ci">&#9192;</div><h4>Settlement Certainty</h4><p>Contracts grade against named official sources with a defined dispute path &mdash; because one argued settlement costs more than a losing market ever will.</p></div>
     </div>
   </div>
 </section>
@@ -653,7 +775,7 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
       <div class="cap sr">
         <div class="eyebrow">Live / In-Play</div>
         <h2>Contracts that trade <em>with the game.</em></h2>
-        <p>In-play is where event contracts feel most like betting: the price is the live win probability, moving with every goal, break and momentum swing. Players can trade out mid-game the way they'd cash out a bet — and the engine has to reprice, match and settle at game speed without seizing up at peak load.</p>
+        <p>In-play is where event contracts feel most like betting: the price is the live win probability, repricing with every goal, break and momentum swing. The leading exchange now runs its in-play markets on official league data and live odds through Sportradar &mdash; because at game speed, settlement can't wait for a second source. Players trade out mid-game the way they'd cash out a bet, and the matching engine has to price, match and grade at peak load without seizing up.</p>
       </div>
 
       <div class="livescene sr">
@@ -685,9 +807,13 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
         </div>
 
         <div class="float-toast toast-flow">
-          <div class="ft-h">Game flow · 67'</div>
-          <div class="ft-row"><span>Win probability</span><span class="up">46%</span></div>
-          <div class="spark"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:60%"></i><i style="height:72%"></i><i style="height:85%"></i><i style="height:100%"></i></div>
+          <div class="ft-h">Win probability &middot; live</div>
+          <div class="ft-row"><span>North City YES</span><span class="up" id="wpnow">46&cent;</span></div>
+          <svg class="wpchart" viewBox="0 0 150 46" preserveAspectRatio="none">
+            <polyline id="wpline" points="0,30 18,29 36,32 54,24 72,26 90,18 108,20 126,14 150,12"/>
+            <circle class="goal" cx="54" cy="24" r="2.6"/>
+            <circle class="goal" cx="108" cy="20" r="2.6"/>
+          </svg>
         </div>
 
         <div class="float-toast toast-cash">
@@ -706,12 +832,12 @@ body.menu-open .navburger span:nth-child(3){transform:translateY(-7px) rotate(-4
     <div class="sr">
       <div class="eyebrow">Sports Data Feeds</div>
       <h1 class="huge">Official data<br>settles the <em>market.</em></h1>
-      <p class="sub">A contract is only as good as its settlement source. Every market resolves against defined official data — ingested, matched to open contracts and graded fast, so payouts land while the final whistle still echoes and no settlement turns into a support queue.</p>
+      <p class="sub">A contract is only as good as its settlement source &mdash; which is why the leading exchange signed Sportradar as its official data spine, covering MLB, NHL, MLS and UFC, with feeds sublicensed to its market makers. Official data means faster grading, in-play markets that hold up, and settlements nobody argues with. The multi-feed discipline is the one a sportsbook already runs: the right source per sport, clean failover, fast grading.</p>
     </div>
     <div class="panels sr">
-      <div class="bp"><h4>Defined <em>Settlement Sources</em></h4><p>Each market names its official source up front — league data, governing-body results — so grading is a lookup, not a judgement call.</p></div>
-      <div class="bp"><h4>Feed-Agnostic <em>Integration</em></h4><p>Best-fit pre-match, in-play and results providers per sport, with failover between sources — the same multi-feed discipline as the sportsbook.</p></div>
-      <div class="bp"><h4>Fast, Auditable <em>Grading</em></h4><p>Results matched to open contracts and settled end to end with a full audit trail — the record that answers a dispute before it starts.</p></div>
+      <div class="bp"><h4>Official <em>Settlement Sources</em></h4><p>Every market names its source up front &mdash; league-licensed data of the Sportradar and Genius Sports class &mdash; so grading is a lookup, not a judgement call.</p></div>
+      <div class="bp"><h4>Live Data for <em>In-Play Markets</em></h4><p>Sub-second official feeds drive live contract pricing and mid-game trade-outs &mdash; the difference between an in-play product and a frozen one.</p></div>
+      <div class="bp"><h4>Fast, Auditable <em>Grading</em></h4><p>Results matched to open contracts and settled end to end with a full audit trail &mdash; the record that answers a dispute before it starts.</p></div>
     </div>
   </div>
 </section>
@@ -766,25 +892,120 @@ const secs=chips.map(c=>document.querySelector(c.getAttribute('href')));
 const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
   const id='#'+e.target.id;chips.forEach(c=>c.classList.toggle('on',c.getAttribute('href')===id));}}),{rootMargin:'-45% 0px -50% 0px'});
 secs.forEach(s=>s&&so.observe(s));
-// signature element — probability market board
+// signature element - exchange market terminal (area chart, order book, trades tape)
 (function(){
-  var rows=[...document.querySelectorAll('#pmboard .pmrow')];
-  function tick(){
-    var row=rows[Math.floor(Math.random()*rows.length)];
-    var yes=parseInt(row.dataset.yes,10);
-    var delta=Math.round(Math.random()*4-2); if(delta===0)delta=Math.random()<.5?-1:1;
-    var next=Math.min(97,Math.max(3,yes+delta));
-    row.dataset.yes=next;
-    row.querySelector('.py').textContent='YES '+next+'\u00A2';
-    row.querySelector('.pn').textContent='NO '+(100-next)+'\u00A2';
-    row.querySelector('.pbf').style.width=next+'%';
-    row.classList.remove('up','down');void row.offsetWidth;
-    row.classList.add(next>yes?'up':'down');
+  var C='\u00A2', PLOT_W=396, W=440, TOP=8, BOT=126, PMIN=22, PMAX=40;
+  function y(v){return BOT-(v-PMIN)/(PMAX-PMIN)*(BOT-TOP)}
+  function x(i,n){return i*(PLOT_W/(n-1))}
+  // seed 4h of history as a bounded random walk ending at 31
+  var hist=[29],steps=47;
+  for(var i=1;i<steps;i++){var d=Math.round(Math.random()*4-2);hist.push(Math.max(26,Math.min(35,hist[i-1]+(d||1))))}
+  hist.push(31);
+  var line=document.getElementById('psline'),fill=document.getElementById('psfill'),
+      grid=document.getElementById('pcgrid'),lastline=document.getElementById('pclastline'),
+      dot=document.getElementById('pcdot'),pulse=document.getElementById('pcpulse'),
+      tag=document.getElementById('pctag'),tagtxt=document.getElementById('pctagtxt'),
+      tlast=document.getElementById('tlast'),tchg=document.getElementById('tchg'),
+      hi=document.getElementById('pshi'),open=hist[0];
+  // fixed price gridlines
+  if(grid){var g='';[25,30,35,40].forEach(function(p){
+    g+='<line class="pc-grid" x1="0" x2="'+PLOT_W+'" y1="'+y(p).toFixed(1)+'" y2="'+y(p).toFixed(1)+'"/>';
+    g+='<text class="pc-glab" x="4" y="'+Math.max(9,y(p)-3).toFixed(1)+'">'+p+C+'</text>';});
+    grid.innerHTML=g;}
+  // time axis from the real clock
+  (function(){var ax=document.getElementById('taxis');if(!ax)return;var t=Date.now(),s=[];
+    for(var h=4;h>=1;h--){var d=new Date(t-h*3600000);s.push(('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2));}
+    s.push('NOW');ax.innerHTML=s.map(function(v){return '<span>'+v+'</span>'}).join('');})();
+  function draw(){
+    var n=hist.length,last=hist[n-1];
+    var pts=hist.map(function(v,i){return x(i,n).toFixed(1)+','+y(v).toFixed(1)});
+    line.setAttribute('points',pts.join(' '));
+    fill.setAttribute('points',pts.join(' ')+' '+PLOT_W+','+BOT+' 0,'+BOT);
+    var ly=y(last),lx=x(n-1,n);
+    lastline.setAttribute('y1',ly);lastline.setAttribute('y2',ly);
+    dot.setAttribute('cx',lx);dot.setAttribute('cy',ly);
+    pulse.setAttribute('cx',lx);pulse.setAttribute('cy',ly);
+    tag.setAttribute('transform','translate('+(PLOT_W+2)+','+(ly-7.5)+')');
+    tagtxt.setAttribute('x',7);tagtxt.setAttribute('y',11);tagtxt.textContent=last+C;
+    tlast.textContent=last+C;
+    var chg=last-open;
+    tchg.textContent=(chg>=0?'+':'')+chg+C+' today';
+    tchg.className='tl-chg '+(chg>=0?'up':'dn');
+    tlast.style.color=chg>=0?'var(--cyan)':'#FF6FB0';
+    if(hi)hi.textContent=Math.min.apply(null,hist)+'\u2013'+Math.max.apply(null,hist)+C;
+    return last;
   }
-  setInterval(tick,1600);
-  // 24h volume ticker
-  var vol=document.getElementById('pmvol'),v=1.82;
-  if(vol)setInterval(function(){v+=0.01+Math.random()*0.02;vol.textContent='24h Vol $'+v.toFixed(2)+'B';},2600);
+  // hero order book: 3 asks / 3 bids recentred on last, sizes jitter
+  var obkRows=[].slice.call(document.querySelectorAll('#pmboard .obk-r')),
+      obkQ=[9.6,7.1,6.2,8.4,5.1,15.0];
+  function book(last){
+    var prices=[last+3,last+2,last+1,last-1,last-2,last-3],maxq=Math.max.apply(null,obkQ);
+    obkRows.forEach(function(r,i){
+      obkQ[i]=Math.max(1.2,Math.min(18,obkQ[i]+(Math.random()*2.4-1.2)));
+      r.querySelector('.pr').textContent=prices[i]+C;
+      r.querySelector('.qy').textContent=obkQ[i].toFixed(1)+'k';
+      r.querySelector('.obk-bar i').style.width=Math.round(obkQ[i]/maxq*100)+'%';});
+    var ml=document.getElementById('obklast'),ms=document.getElementById('obkspr');
+    if(ml)ml.textContent='LAST '+last+C;
+    if(ms)ms.textContent='SPREAD 2'+C;
+  }
+  // trades tape
+  var tape=document.getElementById('tape'),prev=31;
+  function fmt2(v){return ('0'+v).slice(-2)}
+  function trade(last){
+    if(!tape)return;
+    var d=new Date(),q=[50,100,150,200,250,400,500,750,1200,2500][Math.floor(Math.random()*10)];
+    var el=document.createElement('div');el.className='trd-r new';
+    el.innerHTML='<span class="t">'+fmt2(d.getHours())+':'+fmt2(d.getMinutes())+':'+fmt2(d.getSeconds())+'</span>'+
+      '<span class="p '+(last>=prev?'up':'dn')+'">'+last+C+'</span><span class="q">'+(q>=1000?(q/1000)+'k':q)+'</span>';
+    tape.insertBefore(el,tape.firstChild);
+    while(tape.children.length>6)tape.removeChild(tape.lastChild);
+    prev=last;
+  }
+  // phone position card follows the market (200 contracts @ 28c)
+  function phone(last){
+    var m=document.getElementById('phmark'),p=document.getElementById('phpl'),s=document.getElementById('phsell');
+    if(m)m.textContent=last+C;
+    if(p){var pl=(last-28)*2;p.textContent=(pl>=0?'+':'\u2212')+'$'+Math.abs(pl).toFixed(2);p.style.color=pl>=0?'var(--cyan)':'#FF6FB0';}
+    if(s)s.textContent='Sell at '+last+C;
+  }
+  var last=draw();book(last);trade(last);trade(last);trade(last);phone(last);
+  setInterval(function(){
+    var d=Math.round(Math.random()*4-2);if(!d)d=Math.random()<.5?-1:1;
+    var next=Math.max(26,Math.min(35,hist[hist.length-1]+d));
+    hist.push(next);hist.shift();
+    last=draw();book(last);trade(last);phone(last);
+  },1900);
+  // session stats
+  var vol=document.getElementById('pmvol'),v=48.2,oi=document.getElementById('pmoi'),o=12.4;
+  setInterval(function(){
+    v+=0.1+Math.random()*0.3;if(vol)vol.textContent='$'+v.toFixed(1)+'M';
+    if(Math.random()<.4){o+=0.1;if(oi)oi.textContent=o.toFixed(1)+'M';}
+  },2600);
+  // trading-section ladder: jitter sizes, redraw cumulative depth
+  var obs=[].slice.call(document.querySelectorAll('#oblad .obrow'));
+  function ladder(){
+    var asks=obs.filter(function(r){return r.classList.contains('ask')}),
+        bids=obs.filter(function(r){return r.classList.contains('bid')});
+    // cumulative away from mid: asks accumulate upward, bids downward
+    var aCum=0,aTot=asks.slice().reverse().map(function(r){aCum+=parseFloat(r.dataset.q);return aCum}).reverse(),
+        bCum=0,bTot=bids.map(function(r){bCum+=parseFloat(r.dataset.q);return bCum}),
+        mx=Math.max(aCum,bCum,1);
+    asks.forEach(function(r,i){r.querySelector('.obbar i').style.width=Math.round(aTot[i]/mx*96)+'%';
+      r.querySelector('.qty').textContent=parseFloat(r.dataset.q).toFixed(1)+'k';});
+    bids.forEach(function(r,i){r.querySelector('.obbar i').style.width=Math.round(bTot[i]/mx*96)+'%';
+      r.querySelector('.qty').textContent=parseFloat(r.dataset.q).toFixed(1)+'k';});
+    var ad=document.getElementById('obaskd'),bd=document.getElementById('obbidd');
+    if(ad)ad.textContent='ASK DEPTH '+aCum.toFixed(1)+'K';
+    if(bd)bd.textContent='BID DEPTH '+bCum.toFixed(1)+'K';
+  }
+  if(obs.length){ladder();
+    setInterval(function(){
+      var r=obs[Math.floor(Math.random()*obs.length)];
+      var q=parseFloat(r.dataset.q)+(Math.random()*1.6-0.8);
+      r.dataset.q=Math.max(0.8,Math.min(11,q)).toFixed(1);
+      ladder();
+    },2100);}
 })();
 </script>
 <script>
